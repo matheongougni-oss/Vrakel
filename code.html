@@ -1,0 +1,632 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="fr"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>VRAKEL — DAILY CONTROL 001 | Prélancement</title>
+<link rel="icon" type="image/png" href="Distressed Geometric V Emblem.png">
+<!-- Google Fonts: Barlow Condensed, IBM Plex Sans, IBM Plex Mono, Special Elite -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&amp;family=Libre+Caslon+Display&amp;display=swap" rel="stylesheet" class="">
+
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            mineral: '#0B0B0A',
+            paper: '#F0EEE7',
+            stone: '#8C8980',
+            graphite: '#1B1B18',
+            subtle: 'rgba(11, 11, 10, 0.12)',
+            'subtle-light': 'rgba(240, 238, 231, 0.15)'
+          },
+          fontFamily: {
+            title: ['"Special Elite"', 'cursive', 'monospace'],
+            body: ['"IBM Plex Sans"', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'monospace'],
+          },
+          letterSpacing: {
+            ultra: '0.28em',
+            condensed: '-0.02em',
+          }
+        }
+      }
+    }
+  </script>
+<!-- Custom Core Styles -->
+<style data-purpose="typography">
+    body {
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #0B0B0A;
+      color: #0B0B0A;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-title {
+      font-family: 'Special Elite', cursive, monospace;
+    }
+    .font-mono-tech {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+  </style>
+<style data-purpose="architectural-elements">
+    /* Reticules and Fine Technical Marks */
+    .crosshair {
+      position: relative;
+    }
+    .crosshair::before, .crosshair::after {
+      content: '';
+      position: absolute;
+      background-color: currentColor;
+    }
+    .crosshair-center::before {
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      transform: translateY(-50%);
+    }
+    .crosshair-center::after {
+      left: 50%;
+      top: 0;
+      height: 100%;
+      width: 1px;
+      transform: translateX(-50%);
+    }
+    .reticule-mark {
+      width: 11px;
+      height: 11px;
+      display: inline-block;
+      position: relative;
+      opacity: 0.35;
+    }
+    .reticule-mark::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 0;
+      width: 11px;
+      height: 1px;
+      background: currentColor;
+    }
+    .reticule-mark::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 5px;
+      width: 1px;
+      height: 11px;
+      background: currentColor;
+    }
+    /* Strictly 0px radius architectural design */
+    * {
+      border-radius: 0px !important;
+    }
+  </style>
+<style data-purpose="custom-typography">
+.font-title, h1, h2, h3, .brand-title {
+  font-family: 'Special Elite', cursive, monospace !important;
+  letter-spacing: 0.02em !important;
+}
+</style><style>
+h1, h2, h3, .font-title, [class*="title"], blockquote {
+    font-family: 'Courier Prime', monospace !important;
+}
+</style><link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&amp;display=swap" rel="stylesheet"><style class="">
+  h1, h2, h3, .font-title, [class*="font-mono"][class*="text-4xl"], [class*="font-mono"][class*="text-5xl"], [class*="font-mono"][class*="text-6xl"], [class*="font-mono"][class*="text-7xl"], [class*="font-mono"][class*="text-3xl"] {
+    font-family: 'Libre Caslon Display', Georgia, serif !important;
+  }
+</style></head>
+<body class="selection:bg-mineral selection:text-paper bg-mineral antialiased" style="background-color: rgb(35, 35, 37); color: rgb(222, 221, 220);">
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-40 w-full bg-paper border-b border-subtle text-mineral" data-purpose="site-header" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgba(35, 35, 37, 0.15);">
+<div class="max-w-[1440px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+<!-- Brand & Technical Designation -->
+<div class="flex items-center gap-4 md:gap-6">
+<a aria-label="Accueil VRAKEL" class="hover:opacity-85 transition-opacity inline-flex items-center gap-3" href="#">
+<span class="font-title font-extrabold text-xl tracking-[0.25em] text-mineral">V R A K E L</span>
+</a>
+<div class="hidden sm:flex items-center gap-2 font-mono text-[11px] tracking-wider text-stone uppercase border-l border-subtle pl-4 py-0.5">
+<span class="inline-block w-1.5 h-1.5 bg-mineral"></span>
+<span class="">001 / sold out.</span>
+</div>
+</div>
+<!-- Anchor Navigation & Action -->
+<nav aria-label="Navigation principale" class="flex items-center gap-6 lg:gap-10">
+<div class="hidden md:flex items-center gap-8 font-mono text-[12px] tracking-ultra text-mineral font-medium"><a class="hover:text-stone transition-colors py-2" href="https://www.instagram.com/vrakel.objects?utm_source=ig_web_button_share_sheet&exln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">RÉSEAUX</a>
+<a class="hover:text-stone transition-colors py-2" href="#fabrication">UTILITÉ</a></div>
+<!-- CTA Button -->
+<button class="font-mono text-[12px] tracking-widest bg-mineral text-paper px-5 py-2.5 uppercase font-medium hover:bg-stone hover:text-mineral transition-all border border-mineral active:scale-[0.99]" data-purpose="trigger-presale-modal" onclick="window.openModal()" type="button">[COMMANDER]</button>
+</nav>
+</div>
+</header>
+<!-- END: MainHeader -->
+<main>
+<!-- BEGIN: HeroSection -->
+<section class="w-full bg-mineral border-b border-subtle-light overflow-hidden" data-purpose="hero-section">
+<div class="max-w-[1440px] mx-auto min-h-[calc(100vh-80px)] flex flex-col lg:flex-row">
+<!-- Left Panel: 45% Paper Column -->
+<div class="w-full lg:w-[45%] bg-paper text-mineral px-8 sm:px-12 lg:px-16 py-16 lg:py-20 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-subtle relative" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
+<!-- Background Emblem Watermark Detail -->
+<div class="absolute right-6 top-8 opacity-[0.06] pointer-events-none w-36 h-36">
+<img alt="" class="w-full h-full object-contain filter grayscale" src="Distressed Geometric V Emblem.png" style="mix-blend-mode: multiply;">
+</div>
+<!-- Top Meta Data -->
+<div>
+<div class="flex items-center justify-between pb-6 border-b border-subtle mb-10">
+<span class="font-mono text-[11px] tracking-ultra text-stone uppercase">
+                VRAKEL / DAILY CONTROL 001
+              </span>
+<span class="reticule-mark text-mineral"></span>
+</div>
+<!-- Monumental Headline -->
+<h1 class="font-title font-extrabold leading-[1.05] tracking-tight mb-8 text-mineral text-4xl sm:text-5xl lg:text-6xl">
+              ASSEZ DE SE<br>SURVEILLER.</h1>
+<!-- Narrative Paragraphs -->
+<div class="space-y-4 font-body text-mineral/90 text-lg leading-relaxed max-w-md"><p class="text-xs sm:text-sm font-normal text-stone tracking-wide">Un regard sous le bras. Un doute sur l’odeur. Peur de s'approcher.</p><p class="text-xs sm:text-sm font-light text-stone/80">La transpiration prend déjà trop de place dans vos échanges.</p></div>
+<!-- Laboratory Specification Divider -->
+<div class="my-10 pt-8 border-t border-subtle grid grid-cols-1 gap-4 font-mono text-[12px] leading-relaxed">
+<div class="flex items-start gap-3"><span class="text-stone text-[11px]">REF.001</span><div><p class="font-medium text-xs text-[#232325]">DAILY CONTROL 001 — Spray anti-transpirant parfumé.</p><p class="text-stone text-[11px] mt-0.5">Éliminer l'humidité, maîtriser votre présence au quotidien.</p></div></div>
+</div>
+</div>
+<!-- Bottom Pricing & Conversion Section -->
+<div class="pt-8 border-t border-subtle">
+<div class="flex items-baseline justify-between mb-6">
+<div>
+<span class="font-mono text-[11px] uppercase tracking-wider text-stone block">Conditionnement</span>
+<span class="font-mono text-sm tracking-wide text-mineral font-semibold">50 ML. FLACON ET COFFRET.</span>
+</div>
+<div class="text-right">
+<span class="font-mono text-[11px] uppercase tracking-wider text-stone block">Prix initial</span>
+<span class="font-title font-bold text-4xl sm:text-5xl tracking-tight text-mineral leading-none">84 €</span>
+</div>
+</div>
+<!-- Main CTA -->
+<button class="w-full bg-mineral text-paper hover:bg-stone hover:text-mineral font-mono text-[13px] tracking-ultra py-4 uppercase font-semibold transition-colors duration-150 border border-mineral block text-center" data-purpose="hero-modal-trigger" onclick="window.openModal()" type="button">[COMMANDER]</button>
+
+</div>
+</div>
+<!-- Right Panel: 55% Mineral Black Column with Dominant Product Imagery -->
+<div class="w-full lg:w-[55%] bg-mineral flex items-center justify-center p-6 sm:p-12 lg:p-16 relative overflow-hidden" style="background-color: rgb(35, 35, 37);">
+<!-- Subtle Blueprint Reticules Overlay -->
+<div class="absolute inset-0 pointer-events-none opacity-20 flex flex-col justify-between p-8 font-mono text-[10px] text-paper">
+<div class="flex justify-between items-start">
+<span class="">COORD. 52.3676° N / 4.9041° E</span>
+<span class="">FIGURE 001.A — RESTRAINT MODEL</span>
+</div>
+<div class="flex justify-between items-end">
+<span class="">AXIS : HORIZONTAL / PERPENDICULAR</span>
+<span class="">BATCH REF : DC-001-P</span>
+</div>
+</div>
+<!-- Product Visual Wrapper -->
+<div class="relative w-full max-w-lg lg:max-w-xl aspect-[2/3] flex items-center justify-center">
+<!-- Center Crosshair Marks Behind Imagery -->
+<div class="absolute inset-0 border border-subtle-light pointer-events-none"></div>
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 text-stone font-mono text-[10px] tracking-widest uppercase">
+              PL. 01 — FLACON ÉDITION LIMITÉE
+            </div>
+<img alt="Flacon VRAKEL Daily Control 001 reposant sur socle minéral rugueux et coffret d'architecte noir" class="w-full h-full object-cover object-center shadow-2xl filter brightness-95 contrast-105" src="Vrakel Daily Control Product Poster.png">
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: SweatSection -->
+<section class="w-full bg-paper border-b border-subtle py-20 lg:py-28" data-purpose="sweat-indictment-block" id="fabrication" style="background-color: rgb(222, 221, 220); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
+<div class="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
+
+  <!-- Section Header -->
+  <div class="flex items-center gap-4 mb-14">
+    <span class="font-mono text-[11px] tracking-ultra text-stone uppercase">SECTION 01 / CONSTAT</span>
+    <div class="h-[1px] flex-grow bg-subtle"></div>
+    <span class="reticule-mark text-stone"></span>
+  </div>
+
+  <!-- Headline Block -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-16">
+    <div class="lg:col-span-5">
+      <h2 class="font-title font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-mineral mb-6">
+        CE QUE LA<br>TRANSPIRATION<br>FAIT.
+      </h2>
+      <div class="w-16 h-[2px] bg-mineral mb-8"></div>
+      <p class="font-mono text-xs uppercase tracking-widest text-stone leading-relaxed">
+        OBSERVATIONS — IMPACT SUR LA PRÉSENCE
+      </p>
+    </div>
+    
+  </div>
+
+  <!-- Indictment Grid -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-subtle">
+
+    <!-- Item 01 -->
+    <div class="border-b border-r border-subtle p-7 group hover:bg-mineral/5 transition-colors duration-200">
+      <div class="flex items-start justify-between mb-5">
+        <span class="font-mono text-[10px] tracking-ultra text-stone uppercase">— 001</span>
+        <span class="font-mono text-[10px] text-stone/50">SOCIAL</span>
+      </div>
+      <p class="font-title text-2xl sm:text-3xl text-mineral leading-tight mb-4 uppercase">
+        Une trace<br>qui demeure.
+      </p>
+      <p class="font-mono text-[11px] text-stone leading-relaxed">
+        L'auréole reste après le départ. Elle devient la dernière chose mémorisée d'un vêtement, parfois d'une personne.
+      </p>
+    </div>
+
+    <!-- Item 02 -->
+    <div class="border-b border-r border-subtle p-7 group hover:bg-mineral/5 transition-colors duration-200">
+      <div class="flex items-start justify-between mb-5">
+        <span class="font-mono text-[10px] tracking-ultra text-stone uppercase">— 002</span>
+        <span class="font-mono text-[10px] text-stone/50">PROXÉMIE</span>
+      </div>
+      <p class="font-title text-2xl sm:text-3xl text-mineral leading-tight mb-4 uppercase">
+        Un espace<br>qui se rétrécit.
+      </p>
+      <p class="font-mono text-[11px] text-stone leading-relaxed">
+        Les gens ajustent leur proximité. Rarement de manière consciente. Toujours de manière perceptible.
+      </p>
+    </div>
+
+    <!-- Item 03 -->
+    <div class="border-b border-r border-subtle p-7 group hover:bg-mineral/5 transition-colors duration-200">
+      <div class="flex items-start justify-between mb-5">
+        <span class="font-mono text-[10px] tracking-ultra text-stone uppercase">— 003</span>
+        <span class="font-mono text-[10px] text-stone/50">CONCENTRATION</span>
+      </div>
+      <p class="font-title text-2xl sm:text-3xl text-mineral leading-tight mb-4 uppercase">
+        Une attention<br>détournée.
+      </p>
+      <p class="font-mono text-[11px] text-stone leading-relaxed">
+        On surveille. On anticipe. On corrige. Une part de la concentration va ailleurs, avant même le début d'une interaction.
+      </p>
+    </div>
+
+    <!-- Item 04 -->
+    <div class="border-b border-r border-subtle p-7 group hover:bg-mineral/5 transition-colors duration-200">
+      <div class="flex items-start justify-between mb-5">
+        <span class="font-mono text-[10px] tracking-ultra text-stone uppercase">— 004</span>
+        <span class="font-mono text-[10px] text-stone/50">POSTURE</span>
+      </div>
+      <p class="font-title text-2xl sm:text-3xl text-mineral leading-tight mb-4 uppercase">
+        Un corps<br>qui compense.
+      </p>
+      <p class="font-mono text-[11px] text-stone leading-relaxed">
+        Certains gestes disparaissent. Certains vêtements aussi. Le choix se rétrécit sans qu'on l'ait décidé.
+      </p>
+    </div>
+
+    <!-- Item 05 -->
+    <div class="border-b border-r border-subtle p-7 group hover:bg-mineral/5 transition-colors duration-200">
+      <div class="flex items-start justify-between mb-5">
+        <span class="font-mono text-[10px] tracking-ultra text-stone uppercase">— 005</span>
+        <span class="font-mono text-[10px] text-stone/50">IMAGE</span>
+      </div>
+      <p class="font-title text-2xl sm:text-3xl text-mineral leading-tight mb-4 uppercase">
+        Une première<br>impression abimée.
+      </p>
+      <p class="font-mono text-[11px] text-stone leading-relaxed">
+        La poignée de main. L'accolade. Le début de réunion. Ce sont les seuls moments qui comptent, et les plus exposés.
+      </p>
+    </div>
+
+    <!-- Item 06 — CTA Cell -->
+    <div class="border-b border-r border-subtle p-7 bg-mineral flex flex-col justify-between">
+      <div>
+        <div class="flex items-start justify-between mb-5">
+          <span class="font-mono text-[10px] tracking-ultra text-paper/50 uppercase">— 006</span>
+          <span class="font-mono text-[10px] text-paper/30">SOLUTION</span>
+        </div>
+        <p class="font-title text-2xl sm:text-3xl text-paper leading-tight mb-4 uppercase">
+          Daily Control<br>001.
+        </p>
+        <p class="font-mono text-[11px] text-stone leading-relaxed">
+          50 ml. Spray anti-transpirant parfumé.
+        </p>
+      </div>
+      <button
+        class="mt-8 w-full bg-paper text-mineral hover:bg-stone hover:text-paper font-mono text-[12px] tracking-ultra py-3.5 uppercase font-semibold transition-colors border border-paper block text-center"
+        onclick="window.openModal()"
+        type="button"
+      >[COMMANDER]</button>
+    </div>
+
+  </div>
+  <!-- End Grid -->
+
+</div>
+</section>
+<!-- END: SweatSection -->
+<!-- BEGIN: OlfactoryReferenceSection -->
+<section class="w-full bg-mineral text-paper py-24 lg:py-32 border-b border-subtle-light relative overflow-hidden" data-purpose="olfactory-block" id="reference" style="background-color: rgb(35, 35, 37); border-color: rgb(64, 63, 66);">
+<!-- Architectural Geometric Backdrop Watermark -->
+<div class="absolute -right-16 top-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none w-[600px] h-[600px]">
+<img alt="" class="w-full h-full object-contain filter invert" src="Distressed Geometric V Emblem.png">
+</div>
+<div class="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
+<!-- Section Tracker -->
+<div class="flex items-center gap-4 mb-16 text-stone">
+<span class="font-mono text-[11px] tracking-ultra uppercase text-paper/60">SECTION 02 / PROFIL SENSORIEL</span>
+<div class="h-[1px] flex-grow bg-subtle-light"></div>
+<span class="reticule-mark text-paper/40"></span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16"><!-- Left Column : Titre, Accord & Imagery Gallery -->
+<div class="lg:col-span-6 space-y-6">
+<h2 class="font-title font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] tracking-tight text-[#dedddc]">
+    BACCARAT ROUGE 540.<br>LE REPÈRE.
+  </h2>
+<div class="py-3 px-5 border border-[#403f42] bg-[#1d1d1f] flex items-center justify-between font-mono text-xs tracking-widest text-[#dedddc]">
+<span class="text-[#9e9c9f]">ACCORD :</span>
+<span class="uppercase font-semibold text-[#c5c4c2]">Ambré. Floral. Boisé.</span>
+</div>
+<p class="font-body text-xs sm:text-sm text-[#9e9c9f] leading-relaxed font-light">
+    Inspiration olfactive : Baccarat Rouge 540 Eau de Parfum, Maison Francis Kurkdjian.
+  </p>
+<!-- Dual Imagery Juxtaposition -->
+<div class="grid grid-cols-2 gap-4 pt-4">
+<div class="relative border border-[#403f42] bg-[#1d1d1f] p-2 overflow-hidden group">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Inspiration sensorielle Baccarat Rouge 540" class="w-full h-full object-cover filter contrast-105" src="Baccarat Rouge - Feedback.jfif">
+</div>
+<span class="block font-mono text-[10px] text-[#9e9c9f] uppercase tracking-wider text-center mt-2">Expérience &amp; Sillage</span>
+</div>
+<div class="relative border border-[#403f42] bg-[#1d1d1f] p-2 overflow-hidden group">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Notes aériennes VRAKEL Daily Control" class="w-full h-full object-cover filter contrast-105" src="Baccarat Rouge - Feedback 1.jfif">
+</div>
+<span class="block font-mono text-[10px] text-[#9e9c9f] uppercase tracking-wider text-center mt-2">Avis &amp; Transcription</span>
+</div>
+</div>
+</div>
+<!-- Right Column : Citations Éditoriales & Disclaimer -->
+<div class="lg:col-span-6 flex flex-col justify-between space-y-6">
+<div class="space-y-4">
+<blockquote class="p-5 border-l-2 border-[#757477] bg-[#2a2a2d]">
+<p class="font-title text-2xl sm:text-3xl text-[#dedddc] tracking-wide uppercase leading-tight mb-1">
+        « powerfully sophisticated »
+      </p>
+<cite class="font-mono text-[11px] text-[#9e9c9f] tracking-wider block not-italic">
+        — VOGUE <span class="text-[#757477]">(Vogue Magazine)</span>
+</cite>
+</blockquote>
+<blockquote class="p-5 border-l-2 border-[#757477] bg-[#2a2a2d]">
+<p class="font-title text-2xl sm:text-3xl text-[#dedddc] tracking-wide uppercase leading-tight mb-1">
+        « a modern classic »
+      </p>
+<cite class="font-mono text-[11px] text-[#9e9c9f] tracking-wider block not-italic">
+        — GQ <span class="text-[#757477]">(Gentlemen’s Quarterly)</span>
+</cite>
+</blockquote>
+</div>
+<!-- Discrete Legal Disclaimer Notice -->
+<div class="w-full"><div class="border border-[#403f42] bg-[#1d1d1f] p-2"><div class="relative w-full aspect-video overflow-hidden bg-black"><iframe class="w-full h-full object-cover" src="https://www.youtube.com/embed/3WiW5vX-VY0" title="VRAKEL — Profil Sensoriel Baccarat Rouge 540" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe></div><div class="flex items-center justify-between font-mono text-[10px] text-[#9e9c9f] uppercase tracking-wider px-1 pt-2"><span class="">DOC. VIDÉO — ANALYSE &amp; NOTES</span><span class="text-[#757477]">16:9 HD</span></div></div></div><div class="p-4 border border-[#403f42] bg-[#1d1d1f] font-mono text-[10px] leading-relaxed text-[#757477]">
+<span class="text-[#9e9c9f] block uppercase font-medium mb-1 tracking-wider">Transparence légale :</span>
+    Avis sur la création Baccarat Rouge 540, non sur DAILY CONTROL 001. Aucune affiliation officielle avec Maison Francis Kurkdjian.
+  </div>
+</div></div>
+</div>
+</section>
+<!-- END: OlfactoryReferenceSection -->
+<!-- BEGIN: EditionSection -->
+<section class="w-full bg-paper py-20 lg:py-28" data-purpose="edition-block" id="edition" style="background-color: rgb(222, 221, 220); color: rgb(35, 35, 37);">
+<div class="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
+<!-- Section Tracker -->
+<div class="flex items-center gap-4 mb-16 text-mineral">
+<span class="font-mono text-[11px] tracking-ultra text-stone uppercase">SECTION 03 / L’OBJET SCULPTURAL</span>
+<div class="h-[1px] flex-grow bg-subtle"></div>
+<span class="reticule-mark text-stone"></span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+<!-- Image Column : Photographie Still Life -->
+<div class="lg:col-span-7 bg-mineral relative overflow-hidden border border-subtle">
+<div class="aspect-[4/5] sm:aspect-[3/3] lg:aspect-[4/4] overflow-hidden">
+<img alt="Flacon VRAKEL Daily Control 001 sous lumière rasante révélant la texture du bloc de béton" class="w-full h-full object-cover object-center filter grayscale-[15%]" src="Vrakel Daily Control Still Life.png">
+</div>
+<div class="p-4 bg-mineral text-paper border-t border-subtle-light font-mono text-[11px] flex justify-between uppercase tracking-wider">
+<span class="">CONTENANT : VERRE NOIR OPAQUE</span>
+<span class="">COFFRET GÉOMÉTRIQUE</span>
+</div>
+</div>
+<!-- Narrative & Specifications Column -->
+<div class="lg:col-span-5 flex flex-col justify-between space-y-10 lg:pl-4">
+<div>
+<h2 class="font-title font-extrabold text-5xl sm:text-6xl lg:text-7xl leading-tight tracking-tight text-mineral mb-6">
+                GARDER LE CONTRÔLE.
+              </h2>
+
+<!-- Price Box Specification -->
+<div class="p-6 border border-mineral bg-white/40 space-y-2 mb-8">
+
+<p class="font-title font-black text-4xl sm:text-5xl text-mineral tracking-tight">
+                  84 € <span class="font-mono text-sm font-normal text-stone tracking-widest align-middle">/ DAILY CONTROL 001</span></p>
+</div>
+</div>
+<!-- Call to Action -->
+<div>
+<button class="w-full bg-mineral text-paper hover:bg-stone hover:text-mineral font-mono text-[13px] tracking-ultra py-4 uppercase font-semibold transition-all border border-mineral block text-center" data-purpose="edition-modal-trigger" onclick="window.openModal()" type="button">[COMMANDER]</button>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: EditionSection -->
+</main>
+<!-- BEGIN: MainFooter -->
+<footer class="w-full bg-mineral text-paper border-t border-subtle-light py-12" data-purpose="site-footer" style="background-color: rgb(29, 29, 31); color: rgb(197, 196, 194); border-color: rgb(64, 63, 66);">
+<div class="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 flex flex-col md:flex-row items-baseline justify-between gap-8">
+<div>
+<div class="font-title font-extrabold text-2xl tracking-[0.25em] text-paper mb-2"><div class="inline-flex items-center gap-2.5"><span class="">V R A K E L</span></div></div>
+<p class="font-mono text-[11px] text-stone tracking-widest uppercase">
+          ANTI-TRANSPIRANT PARFUMÉ.</p>
+</div>
+<!-- Links & Metadata -->
+<div class="flex flex-wrap items-center gap-6 sm:gap-10 font-mono text-[12px] tracking-widest text-stone">
+<a class="hover:text-paper transition-colors uppercase" href="confidentialite.html">Confidentialité</a>
+<a class="hover:text-paper transition-colors uppercase" href="https://www.instagram.com/vrakel.objects?utm_source=ig_web_button_share_sheet&exln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">Contact</a>
+<span class="text-stone/40">© 2025 VRAKEL. TOUS DROITS RÉSERVÉS.</span>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<!-- BEGIN: PresaleModal -->
+<div aria-hidden="true" aria-labelledby="modal-title" aria-modal="true" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-200" data-purpose="email-signup-modal" id="presale-modal" role="dialog">
+<!-- Modal Card Container -->
+<div class="bg-paper text-mineral w-full max-w-[480px] border border-mineral shadow-2xl relative p-8 sm:p-10 transform scale-95 transition-transform duration-200" id="modal-container">
+<!-- Close Button -->
+<button aria-label="Fermer la boîte de dialogue" class="absolute top-5 right-5 font-mono text-[13px] text-stone hover:text-mineral uppercase tracking-wider p-2 border border-transparent hover:border-subtle transition-all" onclick="window.closeModal()" type="button">
+        [FERMER] ✕
+      </button>
+<!-- Modal Header -->
+<div class="mb-6"><div class="flex items-center gap-2 font-mono text-[11px] text-stone uppercase tracking-ultra mb-2"><span class="inline-block w-1.5 h-1.5 bg-mineral"></span><span class="">001 / SOLD OUT</span></div><h3 class="font-title font-bold text-2xl sm:text-3xl tracking-tight leading-snug text-mineral uppercase mb-3" id="modal-title">ooops...Sold Out</h3><p class="font-body text-xs sm:text-sm text-mineral/90 leading-relaxed">La gamme DAILY CONTROL 001 est assemblée à la main ce qui limite la quantité de stock. Pour s'assurer de ne pas nous rater une prochaine fois , voici le moyen d'être prévenu à l'avance :</p></div>
+
+<!-- Formulaire Brevo — design VRAKEL -->
+<form class="space-y-5" id="signup-form" method="POST" action="https://b56ca161.sibforms.com/serve/MUIFAJLwA5yfGaouOWq0fbYwurwaBVXiIsglXnbqT8I1lyWdEbfMKAd_fReG6t_OHLN2E9CJN-aqPIm7_auELhtuUs4OhNVLucv5p4mQ0qGiBIF54AGKu70gT3Imraulkjo-cJl3wRjZdlbyuAuVy9_jy2xSuS5jnj2nFh5eOM4ZV4svJFw2WBlBsZh62S0q2dUoGvPNs_ro4SYF2g==" novalidate="" onsubmit="window.handleFormSubmit(event)">
+<!-- Input Field Email -->
+<div>
+<label class="block font-mono text-[11px] uppercase tracking-wider text-mineral font-medium mb-1.5" for="email-input">
+            Adresse email <span class="text-stone">*</span>
+</label>
+<input class="w-full bg-white border border-mineral px-4 py-3 text-sm font-mono text-mineral placeholder:text-stone/60 focus:outline-none focus:ring-1 focus:ring-mineral focus:border-mineral" id="email-input" name="EMAIL" autocomplete="off" placeholder="vous@exemple.com" required="" type="email">
+</div>
+<!-- Opt-in Checkbox -->
+<div class="flex items-start gap-3 pt-1">
+<input class="h-4 w-4 mt-0.5 border-mineral text-mineral focus:ring-mineral focus:ring-offset-0 bg-white" id="consent-checkbox" name="consent" required="" type="checkbox">
+<label class="font-body text-xs text-mineral/90 leading-tight" for="consent-checkbox">
+            J’accepte de recevoir les actualités de VRAKEL par email.
+          </label>
+</div>
+<!-- Feedback Alerts -->
+<div class="hidden font-mono text-xs p-3 leading-relaxed border" id="form-feedback" role="alert"></div>
+<!-- Submit Button -->
+<button class="w-full bg-mineral text-paper hover:bg-stone hover:text-mineral font-mono text-[13px] tracking-ultra py-3.5 uppercase font-medium transition-colors border border-mineral block text-center disabled:opacity-50" id="submit-btn" type="submit">[PRÉVENEZ-MOI]</button>
+  <!-- Champs cachés requis par Brevo -->
+  <input type="text" name="email_address_check" value="" style="display:none" tabindex="-1" autocomplete="off">
+  <input type="hidden" name="locale" value="fr">
+  <input type="hidden" name="html_type" value="simple">
+</form>
+<!-- Testing State Switcher for Review -->
+
+<!-- Legal Mentions -->
+
+</div>
+</div>
+<!-- END: PresaleModal -->
+<!-- BEGIN: InteractiveModalScripts -->
+<script data-purpose="modal-and-form-handling">
+    const BREVO_ACTION = 'https://b56ca161.sibforms.com/serve/MUIFAJLwA5yfGaouOWq0fbYwurwaBVXiIsglXnbqT8I1lyWdEbfMKAd_fReG6t_OHLN2E9CJN-aqPIm7_auELhtuUs4OhNVLucv5p4mQ0qGiBIF54AGKu70gT3Imraulkjo-cJl3wRjZdlbyuAuVy9_jy2xSuS5jnj2nFh5eOM4ZV4svJFw2WBlBsZh62S0q2dUoGvPNs_ro4SYF2g==';
+
+    const modal = document.getElementById('presale-modal');
+    const modalContainer = document.getElementById('modal-container');
+    const form = document.getElementById('signup-form');
+    const emailInput = document.getElementById('email-input');
+    const consentCheckbox = document.getElementById('consent-checkbox');
+    const feedbackBox = document.getElementById('form-feedback');
+    const submitBtn = document.getElementById('submit-btn');
+
+    /* ── Ouverture / Fermeture de la modale ── */
+    window.openModal = function() {
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100', 'pointer-events-auto');
+      modalContainer.classList.remove('scale-95');
+      modalContainer.classList.add('scale-100');
+      modal.setAttribute('aria-hidden', 'false');
+      emailInput.focus();
+    };
+
+    window.closeModal = function() {
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modal.classList.remove('opacity-100', 'pointer-events-auto');
+      modalContainer.classList.add('scale-95');
+      modalContainer.classList.remove('scale-100');
+      modal.setAttribute('aria-hidden', 'true');
+      resetForm();
+    };
+
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) window.closeModal();
+    });
+
+    window.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') window.closeModal();
+    });
+
+    function resetForm() {
+      form.reset();
+      feedbackBox.classList.add('hidden');
+      feedbackBox.className = 'hidden font-mono text-xs p-3 leading-relaxed border';
+      submitBtn.disabled = false;
+      submitBtn.textContent = '[PRÉVENEZ-MOI]';
+    }
+
+    function showFeedback(type, message) {
+      const classes = {
+        success: 'font-mono text-xs p-3 leading-relaxed border border-mineral bg-mineral text-paper',
+        error:   'font-mono text-xs p-3 leading-relaxed border border-red-500 bg-red-50 text-red-800',
+        warn:    'font-mono text-xs p-3 leading-relaxed border border-stone bg-paper text-mineral'
+      };
+      feedbackBox.className = classes[type] || classes.warn;
+      feedbackBox.textContent = message;
+      feedbackBox.classList.remove('hidden');
+    }
+
+    /* ── Soumission vers Brevo via fetch ── */
+    window.handleFormSubmit = async function(event) {
+      event.preventDefault();
+
+      const email = emailInput.value.trim();
+      const hasConsent = consentCheckbox.checked;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Validation côté client
+      if (!emailPattern.test(email)) {
+        showFeedback('error', 'Vérifiez votre adresse email.');
+        return;
+      }
+      if (!hasConsent) {
+        showFeedback('error', 'Veuillez accepter de recevoir les actualités.');
+        return;
+      }
+
+      // État de chargement
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'ENVOI…';
+      feedbackBox.classList.add('hidden');
+
+      // Construction du FormData (attendu par Brevo)
+      const formData = new FormData();
+      formData.append('EMAIL', email);
+      formData.append('email_address_check', '');
+      formData.append('locale', 'fr');
+      formData.append('html_type', 'simple');
+
+      try {
+        const response = await fetch(BREVO_ACTION, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors' // Brevo sibforms ne supporte pas CORS — on envoie en aveugle
+        });
+
+        // En mode no-cors, la réponse est opaque : si on arrive ici sans exception, l'envoi a réussi
+        showFeedback('success', '\u2713 Inscription enregistrée. Vous serez prévenu(e) du lancement.');
+        submitBtn.textContent = 'INSCRIT ✓';
+
+      } catch (err) {
+        // Réseau indisponible ou erreur réelle
+        console.error('Brevo submit error:', err);
+        showFeedback('error', 'Connexion impossible. Réessayez dans un instant.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = '[PRÉVENEZ-MOI]';
+      }
+    };
+  </script>
+<!-- END: InteractiveModalScripts -->
+
+
+
+
+
+
+</body></html>
