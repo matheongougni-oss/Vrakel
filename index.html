@@ -118,7 +118,34 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
   h1, h2, h3, .font-title, [class*="font-mono"][class*="text-4xl"], [class*="font-mono"][class*="text-5xl"], [class*="font-mono"][class*="text-6xl"], [class*="font-mono"][class*="text-7xl"], [class*="font-mono"][class*="text-3xl"] {
     font-family: 'Libre Caslon Display', Georgia, serif !important;
   }
-</style></head>
+</style><style data-purpose="responsive-hero-layout">
+  /* Match document order to the mobile reading order: copy, image, offer. */
+  .hero-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "copy" "visual" "offer";
+  }
+  .hero-copy {
+    grid-area: copy;
+    min-width: 0;
+  }
+  .hero-visual {
+    grid-area: visual;
+    min-width: 0;
+  }
+  .hero-offer {
+    grid-area: offer;
+    min-width: 0;
+  }
+  @media (min-width: 1024px) {
+    .hero-layout {
+      grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
+      grid-template-rows: 1fr auto;
+      grid-template-areas: "copy visual" "offer visual";
+    }
+  }
+</style>
+</head>
 <body class="selection:bg-mineral selection:text-paper bg-mineral antialiased" style="background-color: rgb(35, 35, 37); color: rgb(222, 221, 220);">
 <!-- BEGIN: MainHeader -->
 <header class="sticky top-0 z-40 w-full bg-paper border-b border-subtle text-mineral" data-purpose="site-header" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgba(35, 35, 37, 0.15);">
@@ -146,9 +173,9 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
 <main>
 <!-- BEGIN: HeroSection -->
 <section class="w-full bg-mineral border-b border-subtle-light overflow-hidden" data-purpose="hero-section">
-<div class="max-w-[1440px] mx-auto min-h-[calc(100vh-80px)] flex flex-col lg:flex-row">
-<!-- Left Panel: 45% Paper Column -->
-<div class="w-full lg:w-[45%] bg-paper text-mineral px-8 sm:px-12 lg:px-16 py-16 lg:py-20 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-subtle relative" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
+<div class="hero-layout max-w-[1440px] mx-auto min-h-[calc(100vh-80px)]">
+<!-- Hero Copy: first on mobile, upper-left on desktop -->
+<div class="hero-copy w-full bg-paper text-mineral px-8 sm:px-12 lg:px-16 pt-16 lg:pt-20 pb-0 flex flex-col border-b lg:border-b-0 lg:border-r border-subtle relative" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
 <!-- Background Emblem Watermark Detail -->
 <div class="absolute right-6 top-8 opacity-[0.06] pointer-events-none w-36 h-36">
 <img alt="" class="w-full h-full object-contain filter grayscale" src="Distressed Geometric V Emblem.png" style="mix-blend-mode: multiply;">
@@ -171,25 +198,9 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
 <div class="flex items-start gap-3"><span class="text-stone text-[11px]">REF.001</span><div><p class="font-medium text-xs text-[#232325]">DAILY CONTROL 001 — Spray anti-transpirant parfumé.</p><p class="text-stone text-[11px] mt-0.5">Éliminer l'humidité, maîtriser votre présence au quotidien.</p></div></div>
 </div>
 </div>
-<!-- Bottom Pricing & Conversion Section -->
-<div class="pt-8 border-t border-subtle">
-<div class="flex items-baseline justify-between mb-6">
-<div>
-<span class="font-mono text-[11px] uppercase tracking-wider text-stone block">Conditionnement</span>
-<span class="font-mono text-sm tracking-wide text-mineral font-semibold">50 ML. FLACON ET COFFRET.</span>
 </div>
-<div class="text-right">
-<span class="font-mono text-[11px] uppercase tracking-wider text-stone block">Prix initial</span>
-<span class="font-title font-bold text-4xl sm:text-5xl tracking-tight text-mineral leading-none">84 €</span>
-</div>
-</div>
-<!-- Main CTA -->
-<button class="w-full bg-mineral text-paper hover:bg-stone hover:text-mineral font-mono text-[13px] tracking-ultra py-4 uppercase font-semibold transition-colors duration-150 border border-mineral block text-center" data-purpose="hero-modal-trigger" onclick="window.openModal()" type="button">[COMMANDER]</button>
-
-</div>
-</div>
-<!-- Right Panel: 55% Mineral Black Column with Dominant Product Imagery -->
-<div class="w-full lg:w-[55%] bg-mineral flex items-center justify-center p-6 sm:p-12 lg:p-16 relative overflow-hidden" style="background-color: rgb(35, 35, 37);">
+<!-- Product Visual: before pricing on mobile, full right column on desktop -->
+<div class="hero-visual w-full bg-mineral flex items-center justify-center p-6 sm:p-12 lg:p-16 relative overflow-hidden" style="background-color: rgb(35, 35, 37);">
 <!-- Subtle Blueprint Reticules Overlay -->
 <div class="absolute inset-0 pointer-events-none opacity-20 flex flex-col justify-between p-8 font-mono text-[10px] text-paper">
 <div class="flex justify-between items-start">
@@ -209,6 +220,25 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
               PL. 01 — FLACON ÉDITION LIMITÉE
             </div>
 <img alt="Flacon VRAKEL Daily Control 001 reposant sur socle minéral rugueux et coffret d'architecte noir" class="w-full h-full object-cover object-center shadow-2xl filter brightness-95 contrast-105" src="Vrakel Daily Control Product Poster.png">
+</div>
+</div>
+<!-- Hero Offer: after the image on mobile, lower-left on desktop -->
+<div class="hero-offer w-full bg-paper text-mineral px-8 sm:px-12 lg:px-16 py-8 lg:pt-0 lg:pb-20 lg:border-r border-subtle" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
+<!-- Bottom Pricing & Conversion Section -->
+<div class="pt-8 border-t border-subtle">
+<div class="flex items-baseline justify-between mb-6">
+<div>
+<span class="font-mono text-[11px] uppercase tracking-wider text-stone block">Conditionnement</span>
+<span class="font-mono text-sm tracking-wide text-mineral font-semibold">50 ML. FLACON ET COFFRET.</span>
+</div>
+<div class="text-right">
+<span class="font-mono text-[11px] uppercase tracking-wider text-stone block">Prix initial</span>
+<span class="font-title font-bold text-4xl sm:text-5xl tracking-tight text-mineral leading-none">84 €</span>
+</div>
+</div>
+<!-- Main CTA -->
+<button class="w-full bg-mineral text-paper hover:bg-stone hover:text-mineral font-mono text-[13px] tracking-ultra py-4 uppercase font-semibold transition-colors duration-150 border border-mineral block text-center" data-purpose="hero-modal-trigger" onclick="window.openModal()" type="button">[COMMANDER]</button>
+
 </div>
 </div>
 </div>
