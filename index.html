@@ -119,11 +119,11 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
     font-family: 'Libre Caslon Display', Georgia, serif !important;
   }
 </style><style data-purpose="responsive-hero-layout">
-  /* Match document order to the mobile reading order: copy, image, offer. */
+  /* Mobile reading order: copy, image, product specifications, offer. */
   .hero-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "copy" "visual" "offer";
+    grid-template-areas: "copy" "visual" "specs" "offer";
   }
   .hero-copy {
     grid-area: copy;
@@ -133,6 +133,10 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
     grid-area: visual;
     min-width: 0;
   }
+  .hero-specs {
+    grid-area: specs;
+    min-width: 0;
+  }
   .hero-offer {
     grid-area: offer;
     min-width: 0;
@@ -140,8 +144,8 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
   @media (min-width: 1024px) {
     .hero-layout {
       grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
-      grid-template-rows: 1fr auto;
-      grid-template-areas: "copy visual" "offer visual";
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas: "copy visual" "specs visual" "offer visual";
     }
   }
 </style>
@@ -175,7 +179,7 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
 <section class="w-full bg-mineral border-b border-subtle-light overflow-hidden" data-purpose="hero-section">
 <div class="hero-layout max-w-[1440px] mx-auto min-h-[calc(100vh-80px)]">
 <!-- Hero Copy: first on mobile, upper-left on desktop -->
-<div class="hero-copy w-full bg-paper text-mineral px-8 sm:px-12 lg:px-16 pt-16 lg:pt-20 pb-0 flex flex-col border-b lg:border-b-0 lg:border-r border-subtle relative" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
+<div class="hero-copy w-full bg-paper text-mineral px-8 sm:px-12 lg:px-16 pt-16 lg:pt-20 pb-8 lg:pb-0 flex flex-col border-b lg:border-b-0 lg:border-r border-subtle relative" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
 <!-- Background Emblem Watermark Detail -->
 <div class="absolute right-6 top-8 opacity-[0.06] pointer-events-none w-36 h-36">
 <img alt="" class="w-full h-full object-contain filter grayscale" src="Distressed Geometric V Emblem.png" style="mix-blend-mode: multiply;">
@@ -193,10 +197,6 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
               ASSEZ DE SE<br>SURVEILLER.</h1>
 <!-- Narrative Paragraphs -->
 <div class="space-y-4 font-body text-mineral/90 text-lg leading-relaxed max-w-md"><p class="text-xs sm:text-sm font-normal text-stone tracking-wide">Un regard sous le bras. Un doute sur l’odeur. Peur de s'approcher.</p><p class="text-xs sm:text-sm font-light text-stone/80">La transpiration prend déjà trop de place dans vos échanges.</p></div>
-<!-- Laboratory Specification Divider -->
-<div class="my-10 pt-8 border-t border-subtle grid grid-cols-1 gap-4 font-mono text-[12px] leading-relaxed">
-<div class="flex items-start gap-3"><span class="text-stone text-[11px]">REF.001</span><div><p class="font-medium text-xs text-[#232325]">DAILY CONTROL 001 — Spray anti-transpirant parfumé.</p><p class="text-stone text-[11px] mt-0.5">Éliminer l'humidité, maîtriser votre présence au quotidien.</p></div></div>
-</div>
 </div>
 </div>
 <!-- Product Visual: before pricing on mobile, full right column on desktop -->
@@ -222,6 +222,13 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
 <img alt="Flacon VRAKEL Daily Control 001 reposant sur socle minéral rugueux et coffret d'architecte noir" class="w-full h-full object-cover object-center shadow-2xl filter brightness-95 contrast-105" src="Vrakel Daily Control Product Poster.png">
 </div>
 </div>
+<!-- Product Specifications: after the image on mobile, below the copy on desktop -->
+<div class="hero-specs w-full bg-paper text-mineral px-8 sm:px-12 lg:px-16 flex flex-col lg:border-r border-subtle" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
+<!-- Laboratory Specification Divider -->
+<div class="my-10 pt-8 border-t border-subtle grid grid-cols-1 gap-4 font-mono text-[12px] leading-relaxed">
+<div class="flex items-start gap-3"><span class="text-stone text-[11px]">REF.001</span><div><p class="font-medium text-xs text-[#232325]">DAILY CONTROL 001 — Spray anti-transpirant parfumé.</p><p class="text-stone text-[11px] mt-0.5">Éliminer l'humidité, maîtriser votre présence au quotidien.</p></div></div>
+</div>
+</div>
 <!-- Hero Offer: after the image on mobile, lower-left on desktop -->
 <div class="hero-offer w-full bg-paper text-mineral px-8 sm:px-12 lg:px-16 py-8 lg:pt-0 lg:pb-20 lg:border-r border-subtle" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
 <!-- Bottom Pricing & Conversion Section -->
@@ -244,13 +251,83 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
 </div>
 </section>
 <!-- END: HeroSection -->
+<!-- BEGIN: OlfactoryReferenceSection -->
+<section class="w-full bg-mineral text-paper py-24 lg:py-32 border-b border-subtle-light relative overflow-hidden" data-purpose="olfactory-block" id="reference" style="background-color: rgb(35, 35, 37); border-color: rgb(64, 63, 66);">
+<!-- Architectural Geometric Backdrop Watermark -->
+<div class="absolute -right-16 top-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none w-[600px] h-[600px]">
+<img alt="" class="w-full h-full object-contain filter invert" src="Distressed Geometric V Emblem.png">
+</div>
+<div class="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
+<!-- Section Tracker -->
+<div class="flex items-center gap-4 mb-16 text-stone">
+<span class="font-mono text-[11px] tracking-ultra uppercase text-paper/60">SECTION 01 / PROFIL SENSORIEL</span>
+<div class="h-[1px] flex-grow bg-subtle-light"></div>
+<span class="reticule-mark text-paper/40"></span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16"><!-- Left Column : Titre, Accord & Imagery Gallery -->
+<div class="lg:col-span-6 space-y-6">
+<h2 class="font-title font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] tracking-tight text-[#dedddc]">
+    BACCARAT ROUGE 540.<br>LE REPÈRE.
+  </h2>
+<div class="py-3 px-5 border border-[#403f42] bg-[#1d1d1f] flex items-center justify-between font-mono text-xs tracking-widest text-[#dedddc]">
+<span class="text-[#9e9c9f]">ACCORD :</span>
+<span class="uppercase font-semibold text-[#c5c4c2]">Ambré. Floral. Boisé.</span>
+</div>
+<p class="font-body text-xs sm:text-sm text-[#9e9c9f] leading-relaxed font-light">
+    Inspiration olfactive : Baccarat Rouge 540 Eau de Parfum, Maison Francis Kurkdjian.
+  </p>
+<!-- Dual Imagery Juxtaposition -->
+<div class="grid grid-cols-2 gap-4 pt-4">
+<div class="relative border border-[#403f42] bg-[#1d1d1f] p-2 overflow-hidden group">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Inspiration sensorielle Baccarat Rouge 540" class="w-full h-full object-cover filter contrast-105" src="Baccarat Rouge - Feedback.jfif">
+</div>
+<span class="block font-mono text-[10px] text-[#9e9c9f] uppercase tracking-wider text-center mt-2">Expérience &amp; Sillage</span>
+</div>
+<div class="relative border border-[#403f42] bg-[#1d1d1f] p-2 overflow-hidden group">
+<div class="aspect-[3/4] overflow-hidden">
+<img alt="Notes aériennes VRAKEL Daily Control" class="w-full h-full object-cover filter contrast-105" src="Baccarat Rouge - Feedback 1.jfif">
+</div>
+<span class="block font-mono text-[10px] text-[#9e9c9f] uppercase tracking-wider text-center mt-2">Avis &amp; Transcription</span>
+</div>
+</div>
+</div>
+<!-- Right Column : Citations Éditoriales & Disclaimer -->
+<div class="lg:col-span-6 flex flex-col justify-between space-y-6">
+<div class="space-y-4">
+<blockquote class="p-5 border-l-2 border-[#757477] bg-[#2a2a2d]">
+<p class="font-title text-2xl sm:text-3xl text-[#dedddc] tracking-wide uppercase leading-tight mb-1">
+        « powerfully sophisticated »
+      </p>
+<cite class="font-mono text-[11px] text-[#9e9c9f] tracking-wider block not-italic">
+        — VOGUE <span class="text-[#757477]">(Vogue Magazine)</span>
+</cite>
+</blockquote>
+<blockquote class="p-5 border-l-2 border-[#757477] bg-[#2a2a2d]">
+<p class="font-title text-2xl sm:text-3xl text-[#dedddc] tracking-wide uppercase leading-tight mb-1">
+        « a modern classic »
+      </p>
+<cite class="font-mono text-[11px] text-[#9e9c9f] tracking-wider block not-italic">
+        — GQ <span class="text-[#757477]">(Gentlemen’s Quarterly)</span>
+</cite>
+</blockquote>
+</div>
+<!-- Discrete Legal Disclaimer Notice -->
+<div class="w-full"><div class="border border-[#403f42] bg-[#1d1d1f] p-2"><div class="relative w-full aspect-video overflow-hidden bg-black"><iframe class="w-full h-full object-cover" src="https://www.youtube.com/embed/3WiW5vX-VY0" title="VRAKEL — Profil Sensoriel Baccarat Rouge 540" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe></div><div class="flex items-center justify-between font-mono text-[10px] text-[#9e9c9f] uppercase tracking-wider px-1 pt-2"><span class="">DOC. VIDÉO — ANALYSE &amp; NOTES</span><span class="text-[#757477]">16:9 HD</span></div></div></div><div class="p-4 border border-[#403f42] bg-[#1d1d1f] font-mono text-[10px] leading-relaxed text-[#757477]">
+<span class="text-[#9e9c9f] block uppercase font-medium mb-1 tracking-wider">Transparence légale :</span>
+    Avis sur la création Baccarat Rouge 540, non sur DAILY CONTROL 001. Aucune affiliation officielle avec Maison Francis Kurkdjian.
+  </div>
+</div></div>
+</div>
+</section>
+<!-- END: OlfactoryReferenceSection -->
 <!-- BEGIN: SweatSection -->
 <section class="w-full bg-paper border-b border-subtle py-20 lg:py-28" data-purpose="sweat-indictment-block" id="fabrication" style="background-color: rgb(222, 221, 220); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
 <div class="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
 
   <!-- Section Header -->
   <div class="flex items-center gap-4 mb-14">
-    <span class="font-mono text-[11px] tracking-ultra text-stone uppercase">SECTION 01 / CONSTAT</span>
+    <span class="font-mono text-[11px] tracking-ultra text-stone uppercase">SECTION 02 / CONSTAT</span>
     <div class="h-[1px] flex-grow bg-subtle"></div>
     <span class="reticule-mark text-stone"></span>
   </div>
@@ -369,76 +446,6 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
 </div>
 </section>
 <!-- END: SweatSection -->
-<!-- BEGIN: OlfactoryReferenceSection -->
-<section class="w-full bg-mineral text-paper py-24 lg:py-32 border-b border-subtle-light relative overflow-hidden" data-purpose="olfactory-block" id="reference" style="background-color: rgb(35, 35, 37); border-color: rgb(64, 63, 66);">
-<!-- Architectural Geometric Backdrop Watermark -->
-<div class="absolute -right-16 top-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none w-[600px] h-[600px]">
-<img alt="" class="w-full h-full object-contain filter invert" src="Distressed Geometric V Emblem.png">
-</div>
-<div class="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
-<!-- Section Tracker -->
-<div class="flex items-center gap-4 mb-16 text-stone">
-<span class="font-mono text-[11px] tracking-ultra uppercase text-paper/60">SECTION 02 / PROFIL SENSORIEL</span>
-<div class="h-[1px] flex-grow bg-subtle-light"></div>
-<span class="reticule-mark text-paper/40"></span>
-</div>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16"><!-- Left Column : Titre, Accord & Imagery Gallery -->
-<div class="lg:col-span-6 space-y-6">
-<h2 class="font-title font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-[1.05] tracking-tight text-[#dedddc]">
-    BACCARAT ROUGE 540.<br>LE REPÈRE.
-  </h2>
-<div class="py-3 px-5 border border-[#403f42] bg-[#1d1d1f] flex items-center justify-between font-mono text-xs tracking-widest text-[#dedddc]">
-<span class="text-[#9e9c9f]">ACCORD :</span>
-<span class="uppercase font-semibold text-[#c5c4c2]">Ambré. Floral. Boisé.</span>
-</div>
-<p class="font-body text-xs sm:text-sm text-[#9e9c9f] leading-relaxed font-light">
-    Inspiration olfactive : Baccarat Rouge 540 Eau de Parfum, Maison Francis Kurkdjian.
-  </p>
-<!-- Dual Imagery Juxtaposition -->
-<div class="grid grid-cols-2 gap-4 pt-4">
-<div class="relative border border-[#403f42] bg-[#1d1d1f] p-2 overflow-hidden group">
-<div class="aspect-[3/4] overflow-hidden">
-<img alt="Inspiration sensorielle Baccarat Rouge 540" class="w-full h-full object-cover filter contrast-105" src="Baccarat Rouge - Feedback.jfif">
-</div>
-<span class="block font-mono text-[10px] text-[#9e9c9f] uppercase tracking-wider text-center mt-2">Expérience &amp; Sillage</span>
-</div>
-<div class="relative border border-[#403f42] bg-[#1d1d1f] p-2 overflow-hidden group">
-<div class="aspect-[3/4] overflow-hidden">
-<img alt="Notes aériennes VRAKEL Daily Control" class="w-full h-full object-cover filter contrast-105" src="Baccarat Rouge - Feedback 1.jfif">
-</div>
-<span class="block font-mono text-[10px] text-[#9e9c9f] uppercase tracking-wider text-center mt-2">Avis &amp; Transcription</span>
-</div>
-</div>
-</div>
-<!-- Right Column : Citations Éditoriales & Disclaimer -->
-<div class="lg:col-span-6 flex flex-col justify-between space-y-6">
-<div class="space-y-4">
-<blockquote class="p-5 border-l-2 border-[#757477] bg-[#2a2a2d]">
-<p class="font-title text-2xl sm:text-3xl text-[#dedddc] tracking-wide uppercase leading-tight mb-1">
-        « powerfully sophisticated »
-      </p>
-<cite class="font-mono text-[11px] text-[#9e9c9f] tracking-wider block not-italic">
-        — VOGUE <span class="text-[#757477]">(Vogue Magazine)</span>
-</cite>
-</blockquote>
-<blockquote class="p-5 border-l-2 border-[#757477] bg-[#2a2a2d]">
-<p class="font-title text-2xl sm:text-3xl text-[#dedddc] tracking-wide uppercase leading-tight mb-1">
-        « a modern classic »
-      </p>
-<cite class="font-mono text-[11px] text-[#9e9c9f] tracking-wider block not-italic">
-        — GQ <span class="text-[#757477]">(Gentlemen’s Quarterly)</span>
-</cite>
-</blockquote>
-</div>
-<!-- Discrete Legal Disclaimer Notice -->
-<div class="w-full"><div class="border border-[#403f42] bg-[#1d1d1f] p-2"><div class="relative w-full aspect-video overflow-hidden bg-black"><iframe class="w-full h-full object-cover" src="https://www.youtube.com/embed/3WiW5vX-VY0" title="VRAKEL — Profil Sensoriel Baccarat Rouge 540" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe></div><div class="flex items-center justify-between font-mono text-[10px] text-[#9e9c9f] uppercase tracking-wider px-1 pt-2"><span class="">DOC. VIDÉO — ANALYSE &amp; NOTES</span><span class="text-[#757477]">16:9 HD</span></div></div></div><div class="p-4 border border-[#403f42] bg-[#1d1d1f] font-mono text-[10px] leading-relaxed text-[#757477]">
-<span class="text-[#9e9c9f] block uppercase font-medium mb-1 tracking-wider">Transparence légale :</span>
-    Avis sur la création Baccarat Rouge 540, non sur DAILY CONTROL 001. Aucune affiliation officielle avec Maison Francis Kurkdjian.
-  </div>
-</div></div>
-</div>
-</section>
-<!-- END: OlfactoryReferenceSection -->
 <!-- BEGIN: EditionSection -->
 <section class="w-full bg-paper py-20 lg:py-28" data-purpose="edition-block" id="edition" style="background-color: rgb(222, 221, 220); color: rgb(35, 35, 37);">
 <div class="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
