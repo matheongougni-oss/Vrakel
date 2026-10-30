@@ -306,7 +306,7 @@
     padding: 20px 0;
     font-family: var(--font-text);
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 1.5;
     list-style: none;
     cursor: pointer;
@@ -393,6 +393,24 @@
   .everyday-card { padding: 28px 0; border-bottom: 1px solid #bdbbb8; }
   .everyday-card:first-child { border-top: 1px solid #bdbbb8; }
   .everyday-card h3 { margin-bottom: 16px; font-size: 28px; line-height: 1.15; color: #232325; }
+  .everyday-conclusion { margin-top: 40px; max-width: 720px; }
+  .everyday-conclusion h3 { margin-bottom: 16px; font-size: clamp(28px, 3vw, 40px); line-height: 1.15; color: #232325; }
+  .everyday-conclusion__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    margin-top: 16px;
+    font-family: var(--font-text);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.6;
+    color: #232325;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+  .everyday-conclusion__cta:hover { color: #55524e; }
+  .everyday-conclusion__cta:focus-visible { outline: 2px solid #232325; outline-offset: 5px; }
   .hero-offer [data-purpose="hero-modal-trigger"] { font-size: 14px; letter-spacing: .1em; }
   [data-purpose="site-header"] .font-mono { font-size: 12px; letter-spacing: .1em; }
   [data-purpose="site-header"] .text-stone { color: #565359; }
@@ -453,7 +471,7 @@
 </div>
 <!-- Monumental Headline -->
 <!-- Texte retenu par le fondateur. L’allégation de durée devra être étayée pour la formule finale avant publication commerciale. -->
-<h1 class="hero-headline font-title font-extrabold mb-0 lg:mb-8 text-mineral"><span class="hero-headline__line">PARFUM DE LUXE.</span> <span class="hero-headline__line">AISSELLES PLUS SÈCHES, 16H.</span></h1>
+<h1 class="hero-headline font-title font-extrabold mb-0 lg:mb-8 text-mineral"><span class="hero-headline__line">ODEUR DE LUXE</span> <span class="hero-headline__line">AISSELLES PLUS SÈCHES, 16H.</span></h1>
 </div>
 </div>
 <!-- Carousel: immediately after the headline on mobile; right column on desktop. -->
@@ -461,22 +479,19 @@
 <div class="product-carousel" data-product-carousel role="region" aria-roledescription="carrousel" aria-label="Présentation de DAILY CONTROL 001" tabindex="0">
   <div class="product-carousel__viewport" data-carousel-viewport>
     <div class="product-carousel__track" data-carousel-track>
-      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="1 sur 6">
+      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="1 sur 5">
         <img src="Vrakel Daily Control Product Poster.png" width="1024" height="1536" alt="Flacon VRAKEL Daily Control 001 sur socle minéral avec son coffret noir" loading="eager" fetchpriority="high" decoding="async" draggable="false">
       </figure>
-      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="2 sur 6" aria-hidden="true">
-        <img src="slides_images0.png" width="1024" height="1536" alt="DAILY CONTROL 001 : l’anti-transpirant qui se porte comme un parfum. Ambré, floral, boisé. Spray parfumé de 50 ml." loading="lazy" decoding="async" draggable="false">
-      </figure>
-      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="3 sur 6" aria-hidden="true">
+      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="2 sur 5" aria-hidden="true">
         <img src="slides_images1.png" width="1024" height="1536" alt="Illustration d’une aisselle humide puis sèche. Moins d’humidité, plus d’aisance. Illustration, résultat non mesuré." loading="lazy" decoding="async" draggable="false">
       </figure>
-      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="4 sur 6" aria-hidden="true">
+      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="3 sur 5" aria-hidden="true">
         <img src="slides_images2.png" width="1024" height="1536" alt="Le contrôle sans renoncer au parfum : une fonction anti-transpirante et une signature ambrée, florale et boisée." loading="lazy" decoding="async" draggable="false">
       </figure>
-      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="5 sur 6" aria-hidden="true">
+      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="4 sur 5" aria-hidden="true">
         <img src="slides_images3.png" width="1024" height="1536" alt="Mécanisme de l’ACH : le chlorohydrate d’aluminium interagit avec des composants de la sueur, forme une obstruction temporaire et superficielle dans les canaux sudoraux et freine son passage vers la surface. Mécanisme étudié en laboratoire ; Sakhawoth et al., Scientific Reports, 2021." loading="lazy" decoding="async" draggable="false">
       </figure>
-      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="6 sur 6" aria-hidden="true">
+      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="5 sur 5" aria-hidden="true">
         <img src="slides_images4.png" width="1024" height="1536" alt="Le geste DAILY CONTROL : préparer des aisselles propres et parfaitement sèches ; appliquer ; laisser sécher avant de s’habiller." loading="lazy" decoding="async" draggable="false">
       </figure>
     </div>
@@ -493,7 +508,7 @@
       <svg data-carousel-play-icon viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" hidden><path d="m6 3 11 7-11 7z"></path></svg>
     </button>
     <div class="product-carousel__dots" data-carousel-dots role="group" aria-label="Choisir une image"></div>
-    <span class="product-carousel__count" data-carousel-count aria-hidden="true">1 / 6</span>
+    <span class="product-carousel__count" data-carousel-count aria-hidden="true">1 / 5</span>
   </div>
   <span class="product-carousel__sr-only" data-carousel-status aria-live="polite" aria-atomic="true"></span>
 </div>
@@ -621,6 +636,11 @@
         <h3>LE DOUTE SUR L’ODEUR</h3>
         <p class="readable-copy">Avant de vous rapprocher, vous vous demandez si vous sentez encore bon.</p>
       </article>
+    </div>
+    <div class="everyday-conclusion" data-purpose="everyday-product-conclusion">
+      <h3>PASSEZ À DAILY CONTROL 001.</h3>
+      <p class="readable-copy">Des aisselles plus sèches et une signature ambrée, florale et boisée, réunies dans un seul geste.</p>
+      <a class="everyday-conclusion__cta" href="#edition" data-purpose="everyday-product-cta">Découvrir DAILY CONTROL 001 <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
