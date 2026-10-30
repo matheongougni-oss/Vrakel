@@ -3,9 +3,10 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>VRAKEL — DAILY CONTROL 001 | Prélancement</title>
 <link rel="icon" type="image/png" href="Distressed Geometric V Emblem.png">
-<!-- Google Fonts: Barlow Condensed, IBM Plex Sans, IBM Plex Mono, Special Elite -->
+<!-- Libre Caslon Display for headings; Libre Caslon Text for smaller copy. -->
 <link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&amp;family=Libre+Caslon+Display&amp;display=swap" rel="stylesheet" class="">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&amp;family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet">
 
 <!-- Tailwind CSS v3 with Plugins -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -23,9 +24,9 @@
             'subtle-light': 'rgba(240, 238, 231, 0.15)'
           },
           fontFamily: {
-            title: ['"Special Elite"', 'cursive', 'monospace'],
-            body: ['"IBM Plex Sans"', 'sans-serif'],
-            mono: ['"IBM Plex Mono"', 'monospace'],
+            title: ['"Libre Caslon Display"', 'Georgia', 'serif'],
+            body: ['"Libre Caslon Text"', 'Georgia', 'serif'],
+            mono: ['"Libre Caslon Text"', 'Georgia', 'serif'],
           },
           letterSpacing: {
             ultra: '0.28em',
@@ -37,18 +38,23 @@
   </script>
 <!-- Custom Core Styles -->
 <style data-purpose="typography">
+    :root {
+      --font-heading: 'Libre Caslon Display', Georgia, serif;
+      --font-text: 'Libre Caslon Text', Georgia, serif;
+    }
     body {
-      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: var(--font-text);
       background-color: #0B0B0A;
       color: #0B0B0A;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
     }
-    .font-title {
-      font-family: 'Special Elite', cursive, monospace;
+    h1, h2, h3, h4, h5, h6, .font-title, .brand-title, blockquote {
+      font-family: var(--font-heading);
+      letter-spacing: .02em;
     }
-    .font-mono-tech {
-      font-family: 'IBM Plex Mono', monospace;
+    .font-body, .font-mono, .font-mono-tech, button, input, select, textarea {
+      font-family: var(--font-text);
     }
   </style>
 <style data-purpose="architectural-elements">
@@ -105,32 +111,24 @@
       border-radius: 0px !important;
     }
   </style>
-<style data-purpose="custom-typography">
-.font-title, h1, h2, h3, .brand-title {
-  font-family: 'Special Elite', cursive, monospace !important;
-  letter-spacing: 0.02em !important;
-}
-</style><style>
-h1, h2, h3, .font-title, [class*="title"], blockquote {
-    font-family: 'Courier Prime', monospace !important;
-}
-</style><link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&amp;display=swap" rel="stylesheet"><style class="">
-  h1, h2, h3, .font-title, [class*="font-mono"][class*="text-4xl"], [class*="font-mono"][class*="text-5xl"], [class*="font-mono"][class*="text-6xl"], [class*="font-mono"][class*="text-7xl"], [class*="font-mono"][class*="text-3xl"] {
-    font-family: 'Libre Caslon Display', Georgia, serif !important;
-  }
-</style><style data-purpose="responsive-hero-layout">
-  /* Mobile reading order: copy, image, product specifications, offer. */
+<style data-purpose="responsive-hero-layout">
+  /* Mobile: headline, carousel, narrative, product specifications, offer. */
   .hero-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "copy" "visual" "specs" "offer";
+    grid-template-areas: "copy" "visual" "narrative" "specs" "offer";
   }
   .hero-copy {
     grid-area: copy;
     min-width: 0;
+    container-type: inline-size;
   }
   .hero-visual {
     grid-area: visual;
+    min-width: 0;
+  }
+  .hero-narrative {
+    grid-area: narrative;
     min-width: 0;
   }
   .hero-specs {
@@ -144,9 +142,270 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
   @media (min-width: 1024px) {
     .hero-layout {
       grid-template-columns: minmax(0, 45fr) minmax(0, 55fr);
-      grid-template-rows: auto 1fr auto;
-      grid-template-areas: "copy visual" "specs visual" "offer visual";
+      grid-template-rows: auto auto 1fr auto;
+      grid-template-areas: "copy visual" "narrative visual" "specs visual" "offer visual";
     }
+  }
+</style>
+<style data-purpose="product-carousel">
+  .product-carousel {
+    width: 100%;
+    max-width: 576px;
+    min-width: 0;
+    color: #f0eee7;
+  }
+  .product-carousel__viewport {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 2 / 3;
+    background: #232325;
+    touch-action: pan-y pinch-zoom;
+    user-select: none;
+  }
+  .product-carousel__track {
+    display: flex;
+    height: 100%;
+    will-change: transform;
+  }
+  .product-carousel__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    height: 100%;
+    margin: 0;
+  }
+  .product-carousel__slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    -webkit-user-drag: none;
+  }
+  .product-carousel__arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 52px;
+    padding: 0;
+    border: 1px solid rgba(240, 238, 231, .5);
+    background: rgba(11, 11, 10, .72);
+    color: #f0eee7;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+  .product-carousel__arrow--previous { left: 10px; }
+  .product-carousel__arrow--next { right: 10px; }
+  .product-carousel__arrow svg { width: 20px; height: 20px; }
+  .product-carousel__controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 56px;
+    padding: 6px 12px;
+    font-family: var(--font-text);
+  }
+  .product-carousel__controls[hidden],
+  .product-carousel__arrow[hidden] { display: none; }
+  .product-carousel__dots { display: flex; align-items: center; }
+  .product-carousel__dot {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+  .product-carousel__dot::after {
+    content: '';
+    display: block;
+    width: 7px;
+    height: 7px;
+    border: 1px solid currentColor;
+    opacity: .55;
+  }
+  .product-carousel__dot[aria-current="true"]::after {
+    background: currentColor;
+    opacity: 1;
+  }
+  .product-carousel__toggle {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid rgba(240, 238, 231, .35);
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+  .product-carousel__toggle svg { width: 15px; height: 15px; }
+  .product-carousel__toggle svg[hidden] { display: none; }
+  .product-carousel__count {
+    min-width: 36px;
+    font-size: 11px;
+    text-align: center;
+    letter-spacing: .06em;
+  }
+  .product-carousel button:hover { background-color: rgba(240, 238, 231, .16); }
+  .product-carousel button:focus-visible,
+  .product-carousel:focus-visible { outline: 2px solid #f0eee7; outline-offset: 3px; }
+  .product-carousel__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+<style data-purpose="customer-faq">
+  #faq {
+    scroll-margin-top: 104px;
+    padding: 64px 24px;
+    background: #e8e7e6;
+    color: #232325;
+    border-top: 1px solid #c5c4c2;
+    border-bottom: 1px solid #c5c4c2;
+  }
+  .faq-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .faq-heading {
+    margin: 0 0 20px;
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 1.08;
+  }
+  .faq-intro {
+    max-width: 360px;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .faq-list { min-width: 0; border-top: 1px solid #bdbbb8; }
+  .faq-item { border-bottom: 1px solid #bdbbb8; }
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 68px;
+    padding: 20px 0;
+    font-family: var(--font-text);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    list-style: none;
+    cursor: pointer;
+  }
+  .faq-question::-webkit-details-marker { display: none; }
+  .faq-question::after {
+    content: '+';
+    flex: 0 0 24px;
+    font-family: var(--font-text);
+    font-size: 23px;
+    font-weight: 400;
+    text-align: center;
+  }
+  .faq-item[open] > .faq-question::after { content: '−'; }
+  .faq-question:hover { color: #55524e; }
+  .faq-question:focus-visible,
+  .faq-quick-link:focus-visible { outline: 2px solid #232325; outline-offset: 5px; }
+  .faq-answer {
+    padding: 0 38px 24px 0;
+    font-family: var(--font-text);
+    font-size: 15px;
+    line-height: 1.8;
+    color: #454346;
+  }
+  .faq-answer p + p { margin-top: 12px; }
+  .faq-contact { margin-top: 24px; font-size: 14px; line-height: 1.6; }
+  .faq-contact a,
+  .faq-quick-link { text-decoration: underline; text-underline-offset: 4px; }
+  .faq-quick-link {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #454346;
+  }
+  @media (min-width: 1024px) {
+    #faq { padding: 96px 80px; }
+    .faq-layout { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 80px; }
+    .faq-question { font-size: 17px; }
+  }
+</style>
+<style data-purpose="clear-copy-and-readable-text">
+  .hero-headline {
+    font-size: clamp(17px, 5.5vw, 32px);
+    font-size: clamp(17px, 7cqi, 36px);
+    line-height: 1.18;
+    letter-spacing: 0 !important;
+    overflow-wrap: normal;
+  }
+  .hero-headline__line { display: block; white-space: nowrap; }
+  .hero-subtitle, .readable-copy {
+    font-family: var(--font-text);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.75;
+    letter-spacing: 0;
+    color: #454346;
+  }
+  .hero-subtitle { max-width: 36ch; color: #353438; }
+  .section-label {
+    font-family: var(--font-text);
+    font-size: 12px;
+    line-height: 1.6;
+    letter-spacing: .1em;
+    color: #565359;
+  }
+  .section-label--dark { color: #c5c4c2; }
+  .readable-copy--dark { color: #dedddc; }
+  .readable-caption {
+    font-family: var(--font-text);
+    font-size: 13px;
+    line-height: 1.6;
+    letter-spacing: .02em;
+    color: #c5c4c2;
+  }
+  .reference-note {
+    font-family: var(--font-text);
+    font-size: 14px;
+    line-height: 1.75;
+    color: #c5c4c2;
+  }
+  .reference-note strong { display: block; margin-bottom: 6px; color: #dedddc; }
+  .everyday-cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .everyday-card { padding: 28px 0; border-bottom: 1px solid #bdbbb8; }
+  .everyday-card:first-child { border-top: 1px solid #bdbbb8; }
+  .everyday-card h3 { margin-bottom: 16px; font-size: 28px; line-height: 1.15; color: #232325; }
+  .hero-offer [data-purpose="hero-modal-trigger"] { font-size: 14px; letter-spacing: .1em; }
+  [data-purpose="site-header"] .font-mono { font-size: 12px; letter-spacing: .1em; }
+  [data-purpose="site-header"] .text-stone { color: #565359; }
+  [data-purpose="site-header"] button { min-height: 44px; }
+  [data-purpose="site-footer"] .text-stone { font-size: 14px; color: #c5c4c2; letter-spacing: .06em; }
+  [data-purpose="site-footer"] p { font-size: 13px; }
+  [data-purpose="email-signup-modal"] p, [data-purpose="email-signup-modal"] label { font-size: 14px; line-height: 1.6; }
+  @media (min-width: 1024px) {
+    .hero-subtitle { font-size: 18px; }
+    .everyday-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid #bdbbb8; }
+    .everyday-card { padding: 32px; border-right: 1px solid #bdbbb8; }
+    .everyday-card:first-child { padding-left: 0; border-top: 0; }
+    .everyday-card:last-child { border-right: 0; }
   }
 </style>
 </head>
@@ -179,54 +438,76 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
 <section class="w-full bg-mineral border-b border-subtle-light overflow-hidden" data-purpose="hero-section">
 <div class="hero-layout max-w-[1440px] mx-auto min-h-[calc(100vh-80px)]">
 <!-- Hero Copy: first on mobile, upper-left on desktop -->
-<div class="hero-copy w-full bg-paper text-mineral px-8 sm:px-12 lg:px-16 pt-16 lg:pt-20 pb-8 lg:pb-0 flex flex-col border-b lg:border-b-0 lg:border-r border-subtle relative" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
+<div class="hero-copy w-full bg-paper text-mineral px-8 sm:px-12 lg:px-16 pt-10 lg:pt-16 pb-6 lg:pb-0 flex flex-col border-b lg:border-b-0 lg:border-r border-subtle relative" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
 <!-- Background Emblem Watermark Detail -->
 <div class="absolute right-6 top-8 opacity-[0.06] pointer-events-none w-36 h-36">
 <img alt="" class="w-full h-full object-contain filter grayscale" src="Distressed Geometric V Emblem.png" style="mix-blend-mode: multiply;">
 </div>
 <!-- Top Meta Data -->
 <div>
-<div class="flex items-center justify-between pb-6 border-b border-subtle mb-10">
-<span class="font-mono text-[11px] tracking-ultra text-stone uppercase">
+<div class="flex items-center justify-between pb-4 border-b border-subtle mb-6">
+<span class="section-label uppercase">
                 VRAKEL / DAILY CONTROL 001
               </span>
 <span class="reticule-mark text-mineral"></span>
 </div>
 <!-- Monumental Headline -->
-<h1 class="font-title font-extrabold leading-[1.05] tracking-tight mb-8 text-mineral text-4xl sm:text-5xl lg:text-6xl">
-              ASSEZ DE SE<br>SURVEILLER.</h1>
-<!-- Narrative Paragraphs -->
-<div class="space-y-4 font-body text-mineral/90 text-lg leading-relaxed max-w-md"><p class="text-xs sm:text-sm font-normal text-stone tracking-wide">Un regard sous le bras. Un doute sur l’odeur. Peur de s'approcher.</p><p class="text-xs sm:text-sm font-light text-stone/80">La transpiration prend déjà trop de place dans vos échanges.</p></div>
+<!-- Texte retenu par le fondateur. L’allégation de durée devra être étayée pour la formule finale avant publication commerciale. -->
+<h1 class="hero-headline font-title font-extrabold mb-0 lg:mb-8 text-mineral"><span class="hero-headline__line">PARFUM DE LUXE.</span> <span class="hero-headline__line">AISSELLES PLUS SÈCHES, 16H.</span></h1>
 </div>
 </div>
-<!-- Product Visual: before pricing on mobile, full right column on desktop -->
-<div class="hero-visual w-full bg-mineral flex items-center justify-center p-6 sm:p-12 lg:p-16 relative overflow-hidden" style="background-color: rgb(35, 35, 37);">
-<!-- Subtle Blueprint Reticules Overlay -->
-<div class="absolute inset-0 pointer-events-none opacity-20 flex flex-col justify-between p-8 font-mono text-[10px] text-paper">
-<div class="flex justify-between items-start">
-<span class="">COORD. 52.3676° N / 4.9041° E</span>
-<span class="">FIGURE 001.A — RESTRAINT MODEL</span>
+<!-- Carousel: immediately after the headline on mobile; right column on desktop. -->
+<div class="hero-visual w-full bg-mineral flex items-center justify-center p-0 sm:p-8 lg:p-12 relative overflow-hidden" style="background-color: rgb(35, 35, 37);">
+<div class="product-carousel" data-product-carousel role="region" aria-roledescription="carrousel" aria-label="Présentation de DAILY CONTROL 001" tabindex="0">
+  <div class="product-carousel__viewport" data-carousel-viewport>
+    <div class="product-carousel__track" data-carousel-track>
+      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="1 sur 6">
+        <img src="Vrakel Daily Control Product Poster.png" width="1024" height="1536" alt="Flacon VRAKEL Daily Control 001 sur socle minéral avec son coffret noir" loading="eager" fetchpriority="high" decoding="async" draggable="false">
+      </figure>
+      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="2 sur 6" aria-hidden="true">
+        <img src="slides_images0.png" width="1024" height="1536" alt="DAILY CONTROL 001 : l’anti-transpirant qui se porte comme un parfum. Ambré, floral, boisé. Spray parfumé de 50 ml." loading="lazy" decoding="async" draggable="false">
+      </figure>
+      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="3 sur 6" aria-hidden="true">
+        <img src="slides_images1.png" width="1024" height="1536" alt="Illustration d’une aisselle humide puis sèche. Moins d’humidité, plus d’aisance. Illustration, résultat non mesuré." loading="lazy" decoding="async" draggable="false">
+      </figure>
+      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="4 sur 6" aria-hidden="true">
+        <img src="slides_images2.png" width="1024" height="1536" alt="Le contrôle sans renoncer au parfum : une fonction anti-transpirante et une signature ambrée, florale et boisée." loading="lazy" decoding="async" draggable="false">
+      </figure>
+      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="5 sur 6" aria-hidden="true">
+        <img src="slides_images3.png" width="1024" height="1536" alt="Mécanisme de l’ACH : le chlorohydrate d’aluminium interagit avec des composants de la sueur, forme une obstruction temporaire et superficielle dans les canaux sudoraux et freine son passage vers la surface. Mécanisme étudié en laboratoire ; Sakhawoth et al., Scientific Reports, 2021." loading="lazy" decoding="async" draggable="false">
+      </figure>
+      <figure class="product-carousel__slide" data-carousel-slide role="group" aria-roledescription="diapositive" aria-label="6 sur 6" aria-hidden="true">
+        <img src="slides_images4.png" width="1024" height="1536" alt="Le geste DAILY CONTROL : préparer des aisselles propres et parfaitement sèches ; appliquer ; laisser sécher avant de s’habiller." loading="lazy" decoding="async" draggable="false">
+      </figure>
+    </div>
+    <button class="product-carousel__arrow product-carousel__arrow--previous" data-carousel-previous type="button" aria-label="Image précédente" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m14 5-7 7 7 7"></path></svg>
+    </button>
+    <button class="product-carousel__arrow product-carousel__arrow--next" data-carousel-next type="button" aria-label="Image suivante" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m10 5 7 7-7 7"></path></svg>
+    </button>
+  </div>
+  <div class="product-carousel__controls" data-carousel-controls hidden>
+    <button class="product-carousel__toggle" data-carousel-toggle type="button" aria-label="Mettre le défilement en pause" aria-pressed="false">
+      <svg data-carousel-pause-icon viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M5 4h3v12H5zm7 0h3v12h-3z"></path></svg>
+      <svg data-carousel-play-icon viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" hidden><path d="m6 3 11 7-11 7z"></path></svg>
+    </button>
+    <div class="product-carousel__dots" data-carousel-dots role="group" aria-label="Choisir une image"></div>
+    <span class="product-carousel__count" data-carousel-count aria-hidden="true">1 / 6</span>
+  </div>
+  <span class="product-carousel__sr-only" data-carousel-status aria-live="polite" aria-atomic="true"></span>
 </div>
-<div class="flex justify-between items-end">
-<span class="">AXIS : HORIZONTAL / PERPENDICULAR</span>
-<span class="">BATCH REF : DC-001-P</span>
 </div>
-</div>
-<!-- Product Visual Wrapper -->
-<div class="relative w-full max-w-lg lg:max-w-xl aspect-[2/3] flex items-center justify-center">
-<!-- Center Crosshair Marks Behind Imagery -->
-<div class="absolute inset-0 border border-subtle-light pointer-events-none"></div>
-<div class="absolute -top-3 left-1/2 -translate-x-1/2 text-stone font-mono text-[10px] tracking-widest uppercase">
-              PL. 01 — FLACON ÉDITION LIMITÉE
-            </div>
-<img alt="Flacon VRAKEL Daily Control 001 reposant sur socle minéral rugueux et coffret d'architecte noir" class="w-full h-full object-cover object-center shadow-2xl filter brightness-95 contrast-105" src="Vrakel Daily Control Product Poster.png">
-</div>
+<!-- Narrative remains on the left on desktop, below the carousel on mobile. -->
+<div class="hero-narrative w-full bg-paper text-mineral px-8 sm:px-12 lg:px-16 pt-8 lg:pt-0 lg:border-r border-subtle" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
+  <p class="hero-subtitle">Une signature ambrée, florale et boisée avec DAILY CONTROL 001.</p>
 </div>
 <!-- Product Specifications: after the image on mobile, below the copy on desktop -->
 <div class="hero-specs w-full bg-paper text-mineral px-8 sm:px-12 lg:px-16 flex flex-col lg:border-r border-subtle" style="background-color: rgb(232, 231, 230); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
-<!-- Laboratory Specification Divider -->
-<div class="my-10 pt-8 border-t border-subtle grid grid-cols-1 gap-4 font-mono text-[12px] leading-relaxed">
-<div class="flex items-start gap-3"><span class="text-stone text-[11px]">REF.001</span><div><p class="font-medium text-xs text-[#232325]">DAILY CONTROL 001 — Spray anti-transpirant parfumé.</p><p class="text-stone text-[11px] mt-0.5">Éliminer l'humidité, maîtriser votre présence au quotidien.</p></div></div>
+<!-- Product information -->
+<div class="my-8 pt-6 border-t border-subtle grid grid-cols-1 gap-2">
+  <p class="readable-copy" style="font-weight:600;color:#232325;">Spray anti-transpirant parfumé — 50 ml.</p>
+  <p class="readable-copy">Flacon en verre noir. Coffret réutilisable.</p>
 </div>
 </div>
 <!-- Hero Offer: after the image on mobile, lower-left on desktop -->
@@ -235,16 +516,17 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
 <div class="pt-8 border-t border-subtle">
 <div class="flex items-baseline justify-between mb-6">
 <div>
-<span class="font-mono text-[11px] uppercase tracking-wider text-stone block">Conditionnement</span>
-<span class="font-mono text-sm tracking-wide text-mineral font-semibold">50 ML. FLACON ET COFFRET.</span>
+<span class="section-label uppercase block">Ce que vous recevez</span>
+<span class="text-base text-mineral font-semibold">50 ml. Flacon et coffret.</span>
 </div>
 <div class="text-right">
-<span class="font-mono text-[11px] uppercase tracking-wider text-stone block">Prix initial</span>
+<span class="section-label uppercase block">Prix de l’édition</span>
 <span class="font-title font-bold text-4xl sm:text-5xl tracking-tight text-mineral leading-none">84 €</span>
 </div>
 </div>
 <!-- Main CTA -->
 <button class="w-full bg-mineral text-paper hover:bg-stone hover:text-mineral font-mono text-[13px] tracking-ultra py-4 uppercase font-semibold transition-colors duration-150 border border-mineral block text-center" data-purpose="hero-modal-trigger" onclick="window.openModal()" type="button">[COMMANDER]</button>
+<a class="faq-quick-link" href="#faq">À quoi correspondent les 84 € ?</a>
 
 </div>
 </div>
@@ -260,7 +542,7 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
 <div class="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
 <!-- Section Tracker -->
 <div class="flex items-center gap-4 mb-16 text-stone">
-<span class="font-mono text-[11px] tracking-ultra uppercase text-paper/60">SECTION 01 / PROFIL SENSORIEL</span>
+<span class="section-label section-label--dark uppercase">LE PARFUM</span>
 <div class="h-[1px] flex-grow bg-subtle-light"></div>
 <span class="reticule-mark text-paper/40"></span>
 </div>
@@ -270,25 +552,25 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
     BACCARAT ROUGE 540.<br>LE REPÈRE.
   </h2>
 <div class="py-3 px-5 border border-[#403f42] bg-[#1d1d1f] flex items-center justify-between font-mono text-xs tracking-widest text-[#dedddc]">
-<span class="text-[#9e9c9f]">ACCORD :</span>
+<span class="text-[#9e9c9f]">NOTES :</span>
 <span class="uppercase font-semibold text-[#c5c4c2]">Ambré. Floral. Boisé.</span>
 </div>
-<p class="font-body text-xs sm:text-sm text-[#9e9c9f] leading-relaxed font-light">
+<p class="readable-copy readable-copy--dark">
     Inspiration olfactive : Baccarat Rouge 540 Eau de Parfum, Maison Francis Kurkdjian.
   </p>
 <!-- Dual Imagery Juxtaposition -->
 <div class="grid grid-cols-2 gap-4 pt-4">
 <div class="relative border border-[#403f42] bg-[#1d1d1f] p-2 overflow-hidden group">
 <div class="aspect-[3/4] overflow-hidden">
-<img alt="Inspiration sensorielle Baccarat Rouge 540" class="w-full h-full object-cover filter contrast-105" src="Baccarat Rouge - Feedback.jfif">
+<img alt="Le parfum de référence Baccarat Rouge 540" class="w-full h-full object-cover filter contrast-105" src="Baccarat Rouge - Feedback.jfif">
 </div>
-<span class="block font-mono text-[10px] text-[#9e9c9f] uppercase tracking-wider text-center mt-2">Expérience &amp; Sillage</span>
+<span class="readable-caption block text-center mt-2">Le parfum de référence</span>
 </div>
 <div class="relative border border-[#403f42] bg-[#1d1d1f] p-2 overflow-hidden group">
 <div class="aspect-[3/4] overflow-hidden">
-<img alt="Notes aériennes VRAKEL Daily Control" class="w-full h-full object-cover filter contrast-105" src="Baccarat Rouge - Feedback 1.jfif">
+<img alt="Avis sur le parfum de référence Baccarat Rouge 540" class="w-full h-full object-cover filter contrast-105" src="Baccarat Rouge - Feedback 1.jfif">
 </div>
-<span class="block font-mono text-[10px] text-[#9e9c9f] uppercase tracking-wider text-center mt-2">Avis &amp; Transcription</span>
+<span class="readable-caption block text-center mt-2">Avis sur le parfum de référence</span>
 </div>
 </div>
 </div>
@@ -299,22 +581,22 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
 <p class="font-title text-2xl sm:text-3xl text-[#dedddc] tracking-wide uppercase leading-tight mb-1">
         « powerfully sophisticated »
       </p>
-<cite class="font-mono text-[11px] text-[#9e9c9f] tracking-wider block not-italic">
-        — VOGUE <span class="text-[#757477]">(Vogue Magazine)</span>
+<cite class="readable-caption block not-italic">
+        — Vogue
 </cite>
 </blockquote>
 <blockquote class="p-5 border-l-2 border-[#757477] bg-[#2a2a2d]">
 <p class="font-title text-2xl sm:text-3xl text-[#dedddc] tracking-wide uppercase leading-tight mb-1">
         « a modern classic »
       </p>
-<cite class="font-mono text-[11px] text-[#9e9c9f] tracking-wider block not-italic">
-        — GQ <span class="text-[#757477]">(Gentlemen’s Quarterly)</span>
+<cite class="readable-caption block not-italic">
+        — GQ
 </cite>
 </blockquote>
 </div>
 <!-- Discrete Legal Disclaimer Notice -->
-<div class="w-full"><div class="border border-[#403f42] bg-[#1d1d1f] p-2"><div class="relative w-full aspect-video overflow-hidden bg-black"><iframe class="w-full h-full object-cover" src="https://www.youtube.com/embed/3WiW5vX-VY0" title="VRAKEL — Profil Sensoriel Baccarat Rouge 540" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe></div><div class="flex items-center justify-between font-mono text-[10px] text-[#9e9c9f] uppercase tracking-wider px-1 pt-2"><span class="">DOC. VIDÉO — ANALYSE &amp; NOTES</span><span class="text-[#757477]">16:9 HD</span></div></div></div><div class="p-4 border border-[#403f42] bg-[#1d1d1f] font-mono text-[10px] leading-relaxed text-[#757477]">
-<span class="text-[#9e9c9f] block uppercase font-medium mb-1 tracking-wider">Transparence légale :</span>
+<div class="w-full"><div class="border border-[#403f42] bg-[#1d1d1f] p-2"><div class="relative w-full aspect-video overflow-hidden bg-black"><iframe class="w-full h-full object-cover" src="https://www.youtube.com/embed/3WiW5vX-VY0" title="VRAKEL — Le parfum de référence Baccarat Rouge 540" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe></div><div class="readable-caption px-1 pt-2"><span>Découvrir le parfum de référence</span></div></div></div><div class="reference-note p-4 border border-[#403f42] bg-[#1d1d1f]">
+<strong>À propos de cette référence</strong>
     Avis sur la création Baccarat Rouge 540, non sur DAILY CONTROL 001. Aucune affiliation officielle avec Maison Francis Kurkdjian.
   </div>
 </div></div>
@@ -322,136 +604,106 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
 </section>
 <!-- END: OlfactoryReferenceSection -->
 <!-- BEGIN: SweatSection -->
-<section class="w-full bg-paper border-b border-subtle py-20 lg:py-28" data-purpose="sweat-indictment-block" id="fabrication" style="background-color: rgb(222, 221, 220); color: rgb(35, 35, 37); border-color: rgb(197, 196, 194);">
-<div class="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
-
-  <!-- Section Header -->
-  <div class="flex items-center gap-4 mb-14">
-    <span class="font-mono text-[11px] tracking-ultra text-stone uppercase">SECTION 02 / CONSTAT</span>
-    <div class="h-[1px] flex-grow bg-subtle"></div>
-    <span class="reticule-mark text-stone"></span>
+<section class="w-full bg-paper border-b border-subtle py-16 lg:py-24" data-purpose="sweat-indictment-block" id="fabrication" style="background-color:#dedddc;color:#232325;border-color:#c5c4c2;">
+  <div class="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
+    <p class="section-label uppercase mb-8">VOTRE QUOTIDIEN</p>
+    <h2 class="font-title font-bold text-4xl sm:text-5xl lg:text-6xl leading-tight text-mineral mb-10 max-w-3xl">ENCORE UN REGARD SOUS LE BRAS ?</h2>
+    <div class="everyday-cards">
+      <article class="everyday-card">
+        <h3>LES AURÉOLES</h3>
+        <p class="readable-copy">Vous vérifiez votre haut avant de lever le bras ou de retirer votre veste.</p>
+      </article>
+      <article class="everyday-card">
+        <h3>L’HUMIDITÉ</h3>
+        <p class="readable-copy">Cette sensation sous les bras qui vous donne envie de vous rafraîchir ou de changer de haut.</p>
+      </article>
+      <article class="everyday-card">
+        <h3>LE DOUTE SUR L’ODEUR</h3>
+        <p class="readable-copy">Avant de vous rapprocher, vous vous demandez si vous sentez encore bon.</p>
+      </article>
+    </div>
   </div>
-
-  <!-- Headline Block -->
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-16">
-    <div class="lg:col-span-5">
-      <h2 class="font-title font-bold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-mineral mb-6">
-        CE QUE LA<br>TRANSPIRATION<br>FAIT.
-      </h2>
-      <div class="w-16 h-[2px] bg-mineral mb-8"></div>
-      <p class="font-mono text-xs uppercase tracking-widest text-stone leading-relaxed">
-        OBSERVATIONS — IMPACT SUR LA PRÉSENCE
-      </p>
-    </div>
-    
-  </div>
-
-  <!-- Indictment Grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-subtle">
-
-    <!-- Item 01 -->
-    <div class="border-b border-r border-subtle p-7 group hover:bg-mineral/5 transition-colors duration-200">
-      <div class="flex items-start justify-between mb-5">
-        <span class="font-mono text-[10px] tracking-ultra text-stone uppercase">— 001</span>
-        <span class="font-mono text-[10px] text-stone/50">SOCIAL</span>
-      </div>
-      <p class="font-title text-2xl sm:text-3xl text-mineral leading-tight mb-4 uppercase">
-        Une trace<br>qui demeure.
-      </p>
-      <p class="font-mono text-[11px] text-stone leading-relaxed">
-        L'auréole reste après le départ. Elle devient la dernière chose mémorisée d'un vêtement, parfois d'une personne.
-      </p>
-    </div>
-
-    <!-- Item 02 -->
-    <div class="border-b border-r border-subtle p-7 group hover:bg-mineral/5 transition-colors duration-200">
-      <div class="flex items-start justify-between mb-5">
-        <span class="font-mono text-[10px] tracking-ultra text-stone uppercase">— 002</span>
-        <span class="font-mono text-[10px] text-stone/50">PROXÉMIE</span>
-      </div>
-      <p class="font-title text-2xl sm:text-3xl text-mineral leading-tight mb-4 uppercase">
-        Un espace<br>qui se rétrécit.
-      </p>
-      <p class="font-mono text-[11px] text-stone leading-relaxed">
-        Les gens ajustent leur proximité. Rarement de manière consciente. Toujours de manière perceptible.
-      </p>
-    </div>
-
-    <!-- Item 03 -->
-    <div class="border-b border-r border-subtle p-7 group hover:bg-mineral/5 transition-colors duration-200">
-      <div class="flex items-start justify-between mb-5">
-        <span class="font-mono text-[10px] tracking-ultra text-stone uppercase">— 003</span>
-        <span class="font-mono text-[10px] text-stone/50">CONCENTRATION</span>
-      </div>
-      <p class="font-title text-2xl sm:text-3xl text-mineral leading-tight mb-4 uppercase">
-        Une attention<br>détournée.
-      </p>
-      <p class="font-mono text-[11px] text-stone leading-relaxed">
-        On surveille. On anticipe. On corrige. Une part de la concentration va ailleurs, avant même le début d'une interaction.
-      </p>
-    </div>
-
-    <!-- Item 04 -->
-    <div class="border-b border-r border-subtle p-7 group hover:bg-mineral/5 transition-colors duration-200">
-      <div class="flex items-start justify-between mb-5">
-        <span class="font-mono text-[10px] tracking-ultra text-stone uppercase">— 004</span>
-        <span class="font-mono text-[10px] text-stone/50">POSTURE</span>
-      </div>
-      <p class="font-title text-2xl sm:text-3xl text-mineral leading-tight mb-4 uppercase">
-        Un corps<br>qui compense.
-      </p>
-      <p class="font-mono text-[11px] text-stone leading-relaxed">
-        Certains gestes disparaissent. Certains vêtements aussi. Le choix se rétrécit sans qu'on l'ait décidé.
-      </p>
-    </div>
-
-    <!-- Item 05 -->
-    <div class="border-b border-r border-subtle p-7 group hover:bg-mineral/5 transition-colors duration-200">
-      <div class="flex items-start justify-between mb-5">
-        <span class="font-mono text-[10px] tracking-ultra text-stone uppercase">— 005</span>
-        <span class="font-mono text-[10px] text-stone/50">IMAGE</span>
-      </div>
-      <p class="font-title text-2xl sm:text-3xl text-mineral leading-tight mb-4 uppercase">
-        Une première<br>impression abimée.
-      </p>
-      <p class="font-mono text-[11px] text-stone leading-relaxed">
-        La poignée de main. L'accolade. Le début de réunion. Ce sont les seuls moments qui comptent, et les plus exposés.
-      </p>
-    </div>
-
-    <!-- Item 06 — CTA Cell -->
-    <div class="border-b border-r border-subtle p-7 bg-mineral flex flex-col justify-between">
-      <div>
-        <div class="flex items-start justify-between mb-5">
-          <span class="font-mono text-[10px] tracking-ultra text-paper/50 uppercase">— 006</span>
-          <span class="font-mono text-[10px] text-paper/30">SOLUTION</span>
-        </div>
-        <p class="font-title text-2xl sm:text-3xl text-paper leading-tight mb-4 uppercase">
-          Daily Control<br>001.
-        </p>
-        <p class="font-mono text-[11px] text-stone leading-relaxed">
-          50 ml. Spray anti-transpirant parfumé.
-        </p>
-      </div>
-      <button
-        class="mt-8 w-full bg-paper text-mineral hover:bg-stone hover:text-paper font-mono text-[12px] tracking-ultra py-3.5 uppercase font-semibold transition-colors border border-paper block text-center"
-        onclick="window.openModal()"
-        type="button"
-      >[COMMANDER]</button>
-    </div>
-
-  </div>
-  <!-- End Grid -->
-
-</div>
 </section>
 <!-- END: SweatSection -->
+<!-- BEGIN: CustomerFAQ -->
+<section id="faq" aria-labelledby="faq-title" data-purpose="customer-faq">
+  <div class="faq-layout">
+    <div>
+      <p class="section-label uppercase mb-6">QUESTIONS FRÉQUENTES</p>
+      <h2 class="faq-heading" id="faq-title">VOS QUESTIONS.</h2>
+      <p class="faq-intro">L’édition à 84 €, le parfum, le réachat et les informations utiles avant de choisir DAILY CONTROL 001.</p>
+      <p class="faq-contact">Une autre question ? <a href="https://www.instagram.com/vrakel.objects?utm_source=ig_web_button_share_sheet&amp;exln=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">Contactez VRAKEL.</a></p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary class="faq-question">Pourquoi l’édition DAILY CONTROL 001 coûte-t-elle 84 € ?</summary>
+        <div class="faq-answer">
+          <p>Les 84 € comprennent le spray anti-transpirant parfumé de 50 ml, son flacon en verre noir et le coffret réutilisable.</p>
+          <p>L’édition associe une fonction anti-transpirante, une signature ambrée, florale et boisée, et une présentation conçue pour être conservée. Le prix porte sur cet ensemble.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Faudra-t-il racheter le coffret à chaque fois ?</summary>
+        <div class="faq-answer">
+          <p>Le réachat du spray seul, sans nouveau coffret, est prévu. L’objectif est de conserver le coffret et de remplacer uniquement le spray lorsqu’il est terminé.</p>
+          <p>Le tarif et les modalités du réachat seront communiqués au lancement.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Quelle est la différence avec un déodorant ou un parfum classique ?</summary>
+        <div class="faq-answer">
+          <p>Un déodorant vise principalement la maîtrise des odeurs. Un anti-transpirant vise à réduire la transpiration sur la zone d’application. Un parfum apporte une fragrance.</p>
+          <p>DAILY CONTROL 001 est conçu pour associer une fonction anti-transpirante à une signature olfactive ambrée, florale et boisée.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">À quoi ressemble son parfum ?</summary>
+        <div class="faq-answer">
+          <p>La direction olfactive retenue est ambrée, florale et boisée. Baccarat Rouge 540 Eau de Parfum, de Maison Francis Kurkdjian, sert de repère olfactif.</p>
+          <p>VRAKEL est une marque indépendante. Cette référence ne signifie ni une affiliation avec Maison Francis Kurkdjian, ni une équivalence garantie avec son parfum.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Combien de temps dure un flacon de 50 ml ?</summary>
+        <div class="faq-answer">
+          <p>La durée d’un flacon dépend de la quantité appliquée et de la fréquence d’utilisation. Nous préciserons la routine recommandée et une durée d’usage indicative au lancement.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Comment l’appliquer ?</summary>
+        <div class="faq-answer">
+          <p>La routine prévue consiste à appliquer le produit sur des aisselles propres et parfaitement sèches, puis à le laisser sécher avant de s’habiller.</p>
+          <p>Le dosage, la fréquence et les précautions seront précisés dans le mode d’emploi du produit.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Où consulter les ingrédients et les précautions d’utilisation ?</summary>
+        <div class="faq-answer">
+          <p>La liste complète des ingrédients et les précautions d’utilisation seront disponibles avant l’ouverture des commandes, pour vous permettre de vérifier la composition avant de choisir le produit.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Quelles seront les conditions de livraison et de retour ?</summary>
+        <div class="faq-answer">
+          <p>Les pays desservis, les frais, les délais de livraison et les conditions de retour seront précisés à l’ouverture des commandes, avant tout paiement.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">L’inscription par email m’engage-t-elle à acheter ?</summary>
+        <div class="faq-answer">
+          <p>Non. Le formulaire permet de recevoir les actualités de VRAKEL et d’être prévenu de la prochaine disponibilité. Aucun paiement n’est demandé et l’inscription n’engage pas à acheter.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+<!-- END: CustomerFAQ -->
 <!-- BEGIN: EditionSection -->
 <section class="w-full bg-paper py-20 lg:py-28" data-purpose="edition-block" id="edition" style="background-color: rgb(222, 221, 220); color: rgb(35, 35, 37);">
 <div class="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-20">
 <!-- Section Tracker -->
 <div class="flex items-center gap-4 mb-16 text-mineral">
-<span class="font-mono text-[11px] tracking-ultra text-stone uppercase">SECTION 03 / L’OBJET SCULPTURAL</span>
+<span class="section-label uppercase">LE FLACON ET LE COFFRET</span>
 <div class="h-[1px] flex-grow bg-subtle"></div>
 <span class="reticule-mark text-stone"></span>
 </div>
@@ -461,9 +713,9 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
 <div class="aspect-[4/5] sm:aspect-[3/3] lg:aspect-[4/4] overflow-hidden">
 <img alt="Flacon VRAKEL Daily Control 001 sous lumière rasante révélant la texture du bloc de béton" class="w-full h-full object-cover object-center filter grayscale-[15%]" src="Vrakel Daily Control Still Life.png">
 </div>
-<div class="p-4 bg-mineral text-paper border-t border-subtle-light font-mono text-[11px] flex justify-between uppercase tracking-wider">
-<span class="">CONTENANT : VERRE NOIR OPAQUE</span>
-<span class="">COFFRET GÉOMÉTRIQUE</span>
+<div class="p-4 bg-mineral text-paper border-t border-subtle-light readable-caption flex flex-wrap gap-3 justify-between">
+<span class="">Flacon en verre noir</span>
+<span class="">Coffret réutilisable</span>
 </div>
 </div>
 <!-- Narrative & Specifications Column -->
@@ -666,4 +918,223 @@ h1, h2, h3, .font-title, [class*="title"], blockquote {
 
 
 
+<script data-purpose="looping-product-carousel">
+(() => {
+  const carousel = document.querySelector('[data-product-carousel]');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('[data-carousel-track]');
+  const viewport = carousel.querySelector('[data-carousel-viewport]');
+  const slides = Array.from(track.querySelectorAll('[data-carousel-slide]'));
+  if (slides.length < 2) return;
+
+  const previous = carousel.querySelector('[data-carousel-previous]');
+  const next = carousel.querySelector('[data-carousel-next]');
+  const toggle = carousel.querySelector('[data-carousel-toggle]');
+  const dotsContainer = carousel.querySelector('[data-carousel-dots]');
+  const countLabel = carousel.querySelector('[data-carousel-count]');
+  const status = carousel.querySelector('[data-carousel-status]');
+  const pauseIcon = carousel.querySelector('[data-carousel-pause-icon]');
+  const playIcon = carousel.querySelector('[data-carousel-play-icon]');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const total = slides.length;
+  const delay = 8000;
+  const pausedFor = new Set();
+  let userPaused = reducedMotion.matches;
+  let position = 1;
+  let moving = false;
+  let timer = null;
+  let transitionFallback = null;
+  let gesture = null;
+
+  // Duplicate only the two edges, so the last-to-first animation stays seamless.
+  function edgeClone(slide) {
+    const clone = slide.cloneNode(true);
+    clone.removeAttribute('data-carousel-slide');
+    clone.setAttribute('data-carousel-clone', '');
+    clone.setAttribute('aria-hidden', 'true');
+    clone.removeAttribute('aria-label');
+    const image = clone.querySelector('img');
+    image.loading = 'eager';
+    image.removeAttribute('fetchpriority');
+    return clone;
+  }
+  track.prepend(edgeClone(slides[total - 1]));
+  track.append(edgeClone(slides[0]));
+
+  const normalize = index => (index + total) % total;
+  const activeIndex = () => normalize(position - 1);
+
+  const dots = slides.map((slide, index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'product-carousel__dot';
+    button.setAttribute('aria-label', `Afficher l’image ${index + 1} sur ${total}`);
+    button.addEventListener('click', () => select(index, true));
+    dotsContainer.append(button);
+    return button;
+  });
+
+  function stopTimer() {
+    window.clearTimeout(timer);
+    timer = null;
+  }
+
+  function schedule() {
+    stopTimer();
+    if (!userPaused && pausedFor.size === 0 && !moving) {
+      timer = window.setTimeout(() => move(1, false), delay);
+    }
+  }
+
+  function setPause(reason, paused) {
+    if (paused) pausedFor.add(reason);
+    else pausedFor.delete(reason);
+    schedule();
+  }
+
+  function prepareImages() {
+    [activeIndex(), normalize(activeIndex() + 1)].forEach(index => {
+      slides[index].querySelector('img').loading = 'eager';
+    });
+  }
+
+  function update(manual) {
+    const current = activeIndex();
+    slides.forEach((slide, index) => {
+      slide.setAttribute('aria-hidden', String(index !== current));
+      dots[index].setAttribute('aria-current', String(index === current));
+    });
+    countLabel.textContent = `${current + 1} / ${total}`;
+    carousel.dataset.carouselIndex = String(current);
+    if (manual) status.textContent = `Image ${current + 1} sur ${total}.`;
+    prepareImages();
+  }
+
+  function transform(animated) {
+    track.style.transition = animated ? 'transform 380ms ease' : 'none';
+    track.style.transform = `translate3d(${-position * 100}%, 0, 0)`;
+  }
+
+  function settle() {
+    window.clearTimeout(transitionFallback);
+    if (position === 0) {
+      position = total;
+      transform(false);
+    } else if (position === total + 1) {
+      position = 1;
+      transform(false);
+    }
+    moving = false;
+    schedule();
+  }
+
+  function move(direction, manual) {
+    if (moving) return;
+    stopTimer();
+    position += direction;
+    moving = !reducedMotion.matches;
+    transform(moving);
+    update(manual);
+    if (moving) transitionFallback = window.setTimeout(settle, 500);
+    else settle();
+  }
+
+  function select(index, manual) {
+    stopTimer();
+    window.clearTimeout(transitionFallback);
+    moving = false;
+    position = normalize(index) + 1;
+    transform(false);
+    update(manual);
+    schedule();
+  }
+
+  function updateToggle() {
+    toggle.setAttribute('aria-pressed', String(userPaused));
+    toggle.setAttribute('aria-label', userPaused
+      ? 'Reprendre le défilement automatique'
+      : 'Mettre le défilement en pause');
+    pauseIcon.toggleAttribute('hidden', userPaused);
+    playIcon.toggleAttribute('hidden', !userPaused);
+    schedule();
+  }
+
+  previous.addEventListener('click', () => move(-1, true));
+  next.addEventListener('click', () => move(1, true));
+  toggle.addEventListener('click', () => {
+    userPaused = !userPaused;
+    updateToggle();
+  });
+  track.addEventListener('transitionend', event => {
+    if (event.target === track && event.propertyName === 'transform') settle();
+  });
+
+  carousel.addEventListener('keydown', event => {
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      move(event.key === 'ArrowLeft' ? -1 : 1, true);
+    } else if (event.key === 'Home' || event.key === 'End') {
+      event.preventDefault();
+      select(event.key === 'Home' ? 0 : total - 1, true);
+    }
+  });
+
+  carousel.addEventListener('pointerenter', event => {
+    if (event.pointerType === 'mouse') setPause('hover', true);
+  });
+  carousel.addEventListener('pointerleave', () => setPause('hover', false));
+  carousel.addEventListener('focusin', () => setPause('focus', true));
+  carousel.addEventListener('focusout', () => {
+    queueMicrotask(() => {
+      if (!carousel.contains(document.activeElement)) setPause('focus', false);
+    });
+  });
+
+  // Horizontal swipes change images; vertical gestures keep normal page scrolling.
+  viewport.addEventListener('dragstart', event => event.preventDefault());
+  viewport.addEventListener('pointerdown', event => {
+    if (event.target.closest('button') || !event.isPrimary || event.button !== 0) return;
+    gesture = { x: event.clientX, y: event.clientY, id: event.pointerId };
+    setPause('gesture', true);
+    viewport.setPointerCapture(event.pointerId);
+  });
+  viewport.addEventListener('pointerup', event => {
+    if (!gesture || gesture.id !== event.pointerId) return;
+    const dx = event.clientX - gesture.x;
+    const dy = event.clientY - gesture.y;
+    gesture = null;
+    if (viewport.hasPointerCapture(event.pointerId)) viewport.releasePointerCapture(event.pointerId);
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+      move(dx < 0 ? 1 : -1, true);
+    }
+    setPause('gesture', false);
+  });
+  viewport.addEventListener('pointercancel', () => {
+    gesture = null;
+    setPause('gesture', false);
+  });
+
+  document.addEventListener('visibilitychange', () => setPause('hidden', document.hidden));
+  if (document.hidden) pausedFor.add('hidden');
+  reducedMotion.addEventListener('change', event => {
+    if (event.matches) userPaused = true;
+    updateToggle();
+  });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      setPause('offscreen', !entries[0].isIntersecting);
+    }, { threshold: .1 }).observe(carousel);
+  }
+
+  transform(false);
+  update(false);
+  previous.hidden = false;
+  next.hidden = false;
+  carousel.querySelector('[data-carousel-controls]').hidden = false;
+  carousel.dataset.carouselReady = 'true';
+  updateToggle();
+})();
+</script>
 </body></html>
